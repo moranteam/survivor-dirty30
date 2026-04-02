@@ -1,0 +1,2478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SURVIVOR: Jessica's Dirty 30 | Production Bible</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   RESET + CUSTOM PROPERTIES
+   ================================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg-primary: #1a1008;
+  --bg-secondary: #241a0e;
+  --bg-card: #2a1f12;
+  --bg-card-hover: #352818;
+  --fire: #FF6B1A;
+  --fire-light: #FF8F4A;
+  --fire-dark: #CC4A00;
+  --ember: #FF4500;
+  --fire-glow: rgba(255,107,26,0.3);
+  --gold: #F0C040;
+  --gold-light: #FFD966;
+  --gold-dim: #B8942A;
+  --text-primary: #FFF8F0;
+  --text-secondary: #D4B896;
+  --text-dim: #A08B6B;
+  --tribe-pink: #E8318A;
+  --tribe-pink-bg: rgba(232,49,138,0.15);
+  --tribe-blue: #1E6FD9;
+  --tribe-blue-bg: rgba(30,111,217,0.15);
+  --tribe-yellow: #E8960A;
+  --tribe-yellow-bg: rgba(232,150,10,0.15);
+  --merge-teal: #1A9E8F;
+  --merge-gold: #C5A84D;
+  --merge-bg: rgba(26,158,143,0.12);
+  --purple: #A78BFA;
+  --purple-glow: rgba(167,139,250,0.3);
+  --green: #34D399;
+  --red: #EF4444;
+  --border: rgba(255,255,255,0.08);
+  --font-head: 'Bebas Neue', sans-serif;
+  --font-body: 'Source Sans 3', sans-serif;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 18px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 40px;
+}
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(ellipse at 15% 15%, rgba(255,107,26,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 85%, rgba(240,192,64,0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+a { color: var(--gold); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--gold-light); }
+img { max-width: 100%; display: block; }
+
+/* ================================================================
+   SCROLLBAR
+   ================================================================ */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--fire-dark); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--fire); }
+
+/* ================================================================
+   UTILITY CLASSES
+   ================================================================ */
+.container { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
+.main-content .container { max-width: calc(100% - 50px); }
+@media (min-width: 1400px) { .main-content .container { max-width: 1320px; } }
+.section { padding: 64px 0; position: relative; }
+.section-label {
+  font-family: var(--font-head);
+  font-size: var(--text-base);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--fire);
+  margin-bottom: 8px;
+  display: block;
+}
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(36px, 6vw, 56px);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: var(--text-lg);
+  max-width: 720px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--fire-dark), var(--gold-dim), transparent);
+  margin: 50px 0;
+  border: none;
+}
+.fire-gradient { background: linear-gradient(135deg, var(--fire), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.gold-gradient { background: linear-gradient(135deg, var(--gold), var(--gold-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+/* Tags */
+.tag {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 3px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+.tag-physical { background: #E85A10; color: #fff; }
+.tag-mental { background: #1560B8; color: #fff; }
+.tag-social { background: #8B6FD6; color: #fff; }
+.tag-team { background: #22A870; color: #fff; }
+.tag-individual { background: #C07A08; color: #fff; }
+.tag-comedy { background: #C4287A; color: #fff; }
+.tag-puzzle { background: #C99A20; color: #fff; }
+
+/* Role Badges */
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-head);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 3px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.role-jeff { background: rgba(240,192,64,0.2); color: var(--gold); border: 1px solid rgba(240,192,64,0.3); }
+.role-steph { background: rgba(167,139,250,0.2); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); }
+.role-helper { background: rgba(52,211,153,0.2); color: var(--green); border: 1px solid rgba(52,211,153,0.3); }
+
+/* Auction badges */
+.auction-badge {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.badge-revealed { background: rgba(52,211,153,0.15); color: #34D399; border: 1px solid rgba(52,211,153,0.3); }
+.badge-covered { background: rgba(30,111,217,0.15); color: #60A5FA; border: 1px solid rgba(30,111,217,0.3); }
+.badge-trap { background: rgba(239,68,68,0.15); color: #F87171; border: 1px solid rgba(239,68,68,0.3); animation: pulse 2s infinite; }
+.badge-advantage { background: rgba(240,192,64,0.15); color: var(--gold); border: 1px solid rgba(240,192,64,0.3); }
+.badge-emotional { background: rgba(167,139,250,0.15); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); animation: pulse 1.5s infinite; }
+.badge-designed { background: rgba(255,107,26,0.15); color: var(--fire); border: 1px solid rgba(255,107,26,0.3); }
+
+/* ================================================================
+   ANIMATIONS
+   ================================================================ */
+@keyframes fireGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(255,107,26,0.5), 0 0 40px rgba(255,107,26,0.25), 0 0 60px rgba(240,192,64,0.1); }
+  50% { text-shadow: 0 0 30px rgba(255,107,26,0.7), 0 0 60px rgba(255,107,26,0.4), 0 0 90px rgba(240,192,64,0.2); }
+}
+@keyframes mergeGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(26,158,143,0.25), 0 0 30px rgba(26,158,143,0.1); }
+  50% { box-shadow: 0 0 25px rgba(26,158,143,0.45), 0 0 50px rgba(26,158,143,0.2); }
+}
+@keyframes countdownPulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(255,107,26,0.3), 0 0 30px rgba(255,107,26,0.15); }
+  50% { box-shadow: 0 0 25px rgba(255,107,26,0.5), 0 0 50px rgba(255,107,26,0.25); }
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes emotionalPulse { 0%, 100% { box-shadow: 0 0 6px rgba(167,139,250,0.3); } 50% { box-shadow: 0 0 12px rgba(167,139,250,0.5); } }
+@keyframes flickerGlow { 0%, 100% { opacity: 1; } 25% { opacity: 0.85; } 50% { opacity: 0.95; } 75% { opacity: 0.88; } }
+@keyframes scrollLine {
+  0% { transform: scaleY(0); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+@keyframes torchFlicker {
+  0%, 100% { opacity: 0.6; }
+  25% { opacity: 0.8; }
+  50% { opacity: 0.5; }
+  75% { opacity: 0.75; }
+}
+.animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+.animate-delay-1 { transition-delay: 0.1s; }
+.animate-delay-2 { transition-delay: 0.2s; }
+
+/* ================================================================
+   TOP NAV
+   ================================================================ */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: rgba(26,16,8,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+.top-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.top-nav-links {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  flex: 1;
+  margin-left: 20px;
+  scrollbar-width: none;
+}
+.top-nav-links::-webkit-scrollbar { height: 0; }
+.top-nav-links a {
+  font-family: var(--font-head);
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding: 18px 12px;
+  white-space: nowrap;
+  transition: color 0.2s;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+.top-nav-links a:hover { color: var(--gold); }
+.top-nav-links a.active { color: var(--fire); border-bottom-color: var(--fire); }
+.top-nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--fire);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+/* ================================================================
+   PROGRESS SIDEBAR
+   ================================================================ */
+.progress-sidebar {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  width: 80px;
+  height: calc(100vh - 56px);
+  background: rgba(26,16,8,0.92);
+  border-right: 1px solid var(--border);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0;
+  gap: 6px;
+  overflow-y: auto;
+}
+.progress-sidebar::-webkit-scrollbar { width: 0; }
+.progress-sidebar-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--text-dim);
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  flex-shrink: 0;
+}
+.progress-sidebar-dot.active {
+  background: var(--fire);
+  border-color: var(--fire);
+  box-shadow: 0 0 12px var(--fire-glow);
+}
+.progress-sidebar-dot:hover::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-family: var(--font-head);
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+.progress-sidebar-dot-label {
+  font-family: var(--font-head);
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 1;
+  margin-top: -2px;
+  flex-shrink: 0;
+}
+.progress-sidebar-dot.active + .progress-sidebar-dot-label {
+  color: var(--fire);
+}
+.scroll-indicator {
+  position: absolute;
+  font-size: 18px;
+  transition: top 0.3s ease;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 11;
+  filter: drop-shadow(0 0 4px rgba(255,107,26,0.5));
+}
+
+.main-content {
+  margin-left: 80px;
+  margin-top: 56px;
+}
+
+/* ================================================================
+   HERO
+   ================================================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 24px 80px;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 80%, rgba(255,107,26,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 0%, rgba(240,192,64,0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60%;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 500' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3ClinearGradient id='sky' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%230D0520' stop-opacity='0.95'/%3E%3Cstop offset='0.15' stop-color='%231A0A35' stop-opacity='0.9'/%3E%3Cstop offset='0.3' stop-color='%23401848' stop-opacity='0.8'/%3E%3Cstop offset='0.45' stop-color='%23802050' stop-opacity='0.65'/%3E%3Cstop offset='0.55' stop-color='%23B04030' stop-opacity='0.55'/%3E%3Cstop offset='0.65' stop-color='%23D06828' stop-opacity='0.5'/%3E%3Cstop offset='0.75' stop-color='%23E89030' stop-opacity='0.4'/%3E%3Cstop offset='0.85' stop-color='%23F0B040' stop-opacity='0.3'/%3E%3Cstop offset='0.92' stop-color='%23FFD060' stop-opacity='0.2'/%3E%3Cstop offset='1' stop-color='%231a1008' stop-opacity='0.95'/%3E%3C/linearGradient%3E%3ClinearGradient id='ridgeFill1' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%230a0500'/%3E%3Cstop offset='1' stop-color='%23120800'/%3E%3C/linearGradient%3E%3ClinearGradient id='ridgeFill2' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23100700'/%3E%3Cstop offset='1' stop-color='%23180c04'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='500' fill='url(%23sky)'/%3E%3Ccircle cx='180' cy='30' r='1.8' fill='%23FFF8F0' opacity='0.8'/%3E%3Ccircle cx='320' cy='18' r='1.2' fill='%23FFF8F0' opacity='0.6'/%3E%3Ccircle cx='480' cy='45' r='1.5' fill='%23FFF8F0' opacity='0.7'/%3E%3Ccircle cx='620' cy='12' r='1' fill='%23FFF8F0' opacity='0.5'/%3E%3Ccircle cx='780' cy='38' r='1.8' fill='%23FFF8F0' opacity='0.7'/%3E%3Ccircle cx='950' cy='22' r='1.3' fill='%23FFF8F0' opacity='0.6'/%3E%3Ccircle cx='1080' cy='55' r='1' fill='%23FFF8F0' opacity='0.4'/%3E%3Ccircle cx='100' cy='60' r='1.2' fill='%23FFF8F0' opacity='0.5'/%3E%3Cpath d='M0 500 L0 360 Q60 355 120 348 Q180 338 240 322 Q300 304 340 285 Q370 272 400 258 Q425 248 445 240 Q462 234 478 228 Q492 224 505 220 Q515 218 522 216 L530 215 Q535 217 542 220 Q552 224 565 230 Q580 238 592 248 Q602 256 612 266 Q618 272 625 280 Q635 290 648 302 Q668 320 692 336 Q710 345 728 350 Q750 356 775 360 Q810 365 850 370 Q900 374 960 378 Q1020 381 1080 384 Q1140 386 1200 388 L1200 500Z' fill='url(%23ridgeFill1)' opacity='0.95'/%3E%3Cpath d='M0 500 L0 375 Q80 370 160 362 Q230 352 290 336 Q340 322 380 306 Q410 294 435 282 Q455 274 475 266 Q490 260 504 255 Q514 252 522 250 L530 249 Q536 251 544 254 Q556 259 570 266 Q586 275 600 286 Q612 296 622 306 Q630 314 640 325 Q655 342 674 356 Q700 372 730 382 Q762 390 800 396 Q850 402 910 406 Q980 410 1060 414 Q1130 416 1200 418 L1200 500Z' fill='url(%23ridgeFill2)' opacity='0.7'/%3E%3Cpath d='M0 500 L0 410 Q100 406 200 400 Q300 392 380 378 Q440 366 480 352 Q510 342 535 332 Q548 328 555 326 Q565 330 578 338 Q600 350 625 362 Q660 378 700 390 Q750 400 810 408 Q880 414 960 418 Q1050 422 1140 424 L1200 426 L1200 500Z' fill='%23150c04' opacity='0.5'/%3E%3Cpath d='M0 500 L0 440 Q150 436 300 432 Q400 426 470 416 Q520 408 555 398 Q570 395 580 394 Q590 396 608 402 Q640 412 680 420 Q730 428 800 434 Q900 438 1000 442 Q1100 444 1200 446 L1200 500Z' fill='%231a1008' opacity='0.35'/%3E%3Cpath d='M430 400 Q460 380 485 360 Q500 345 510 330 Q515 318 520 305 Q523 295 525 285 Q527 278 528 270' fill='none' stroke='%23C4A67D' stroke-width='1.5' stroke-dasharray='4,6' opacity='0.35'/%3E%3Crect x='290' y='300' width='3' height='28' fill='%23201008' opacity='0.85'/%3E%3Cellipse cx='291' cy='294' rx='5' ry='9' fill='%23FF8030' opacity='0.55'/%3E%3Cellipse cx='291' cy='291' rx='3' ry='5' fill='%23FFD060' opacity='0.4'/%3E%3Crect x='380' y='268' width='3' height='28' fill='%23201008' opacity='0.85'/%3E%3Cellipse cx='381' cy='262' rx='5' ry='9' fill='%23FF8030' opacity='0.55'/%3E%3Cellipse cx='381' cy='259' rx='3' ry='5' fill='%23FFD060' opacity='0.4'/%3E%3Crect x='460' y='244' width='3' height='24' fill='%23201008' opacity='0.85'/%3E%3Cellipse cx='461' cy='239' rx='4' ry='8' fill='%23FF8030' opacity='0.55'/%3E%3Cellipse cx='461' cy='236' rx='3' ry='5' fill='%23FFD060' opacity='0.4'/%3E%3Crect x='510' y='224' width='3' height='22' fill='%23201008' opacity='0.85'/%3E%3Cellipse cx='511' cy='219' rx='4' ry='7' fill='%23FFB040' opacity='0.6'/%3E%3Cellipse cx='511' cy='216' rx='2.5' ry='4' fill='%23FFD860' opacity='0.4'/%3E%3Crect x='600' y='256' width='3' height='26' fill='%23201008' opacity='0.85'/%3E%3Cellipse cx='601' cy='250' rx='5' ry='9' fill='%23FF8030' opacity='0.55'/%3E%3Cellipse cx='601' cy='247' rx='3' ry='5' fill='%23FFD060' opacity='0.4'/%3E%3Crect x='690' y='282' width='3' height='28' fill='%23201008' opacity='0.85'/%3E%3Cellipse cx='691' cy='276' rx='5' ry='9' fill='%23FF8030' opacity='0.55'/%3E%3Cellipse cx='691' cy='273' rx='3' ry='5' fill='%23FFD060' opacity='0.4'/%3E%3Crect x='800' y='310' width='3' height='28' fill='%23201008' opacity='0.85'/%3E%3Cellipse cx='801' cy='304' rx='5' ry='9' fill='%23FF8030' opacity='0.55'/%3E%3Cellipse cx='801' cy='301' rx='3' ry='5' fill='%23FFD060' opacity='0.4'/%3E%3Crect x='900' y='330' width='3' height='26' fill='%23201008' opacity='0.85'/%3E%3Cellipse cx='901' cy='324' rx='5' ry='8' fill='%23FF8030' opacity='0.5'/%3E%3Cellipse cx='901' cy='322' rx='3' ry='4' fill='%23FFD060' opacity='0.35'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+.hero-fire {
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 200px;
+  background: linear-gradient(to top, rgba(255,107,26,0.1) 0%, transparent 100%);
+  animation: fireGlow 3s ease-in-out infinite;
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 2; }
+.hero-badge {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 16px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  padding: 6px 20px;
+  border-radius: 30px;
+  margin-bottom: 30px;
+}
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(70px, 14vw, 160px);
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  line-height: 0.95;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  animation: fireGlow 4s ease-in-out infinite;
+}
+.hero-subtitle {
+  font-family: var(--font-head);
+  font-size: clamp(28px, 6vw, 56px);
+  letter-spacing: 4px;
+  background: linear-gradient(135deg, var(--fire), var(--gold), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+}
+.hero-custom-tagline {
+  font-family: var(--font-head);
+  font-size: 20px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+.hero-meta-item { display: flex; align-items: center; gap: 8px; }
+.hero-meta-icon { color: var(--fire); font-size: 18px; }
+
+/* Countdown */
+.countdown-badge {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: var(--text-xl);
+  letter-spacing: 4px;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--fire-dark), var(--fire));
+  padding: 14px 36px;
+  border-radius: 6px;
+  margin-bottom: 24px;
+  animation: countdownPulse 2s ease-in-out infinite;
+}
+
+/* Executive Producer credit */
+.hero-producers {
+  display: inline-block;
+  border: 1px solid rgba(240,192,64,0.3);
+  background: rgba(240,192,64,0.06);
+  border-radius: 10px;
+  padding: 16px 32px;
+  margin-bottom: 20px;
+}
+.hero-producers-label {
+  font-family: var(--font-head);
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--fire);
+  margin-bottom: 6px;
+}
+.hero-producers-names {
+  font-family: var(--font-head);
+  font-size: 20px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+.hero-merge-buff {
+  max-width: 360px;
+  margin: 0 auto 24px;
+  border-radius: 10px;
+  opacity: 0.95;
+  border: 2px solid rgba(26,158,143,0.3);
+  box-shadow: 0 4px 20px rgba(26,158,143,0.2), 0 0 40px rgba(197,168,77,0.1);
+  animation: mergeGlow 3s ease-in-out infinite;
+}
+.hero-scroll {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-dim);
+  font-family: var(--font-head);
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.hero-scroll-line {
+  width: 1px; height: 40px;
+  background: var(--gold-dim);
+  transform-origin: top;
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+/* Hero buff row for pre-merge tribes */
+.hero-buff-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.hero-buff-row img {
+  width: 260px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.hero-buff-row img:hover {
+  transform: scale(1.15);
+  box-shadow: 0 12px 40px rgba(255,107,26,0.4);
+  z-index: 10;
+  position: relative;
+}
+.merge-arrow-zone {
+  text-align: center;
+  padding: 12px 0;
+}
+
+/* ================================================================
+   CALLOUTS
+   ================================================================ */
+.callout {
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 24px 0;
+  border-left: 4px solid;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.callout-alert { background: rgba(239,68,68,0.08); border-color: var(--red); color: #FCA5A5; }
+.callout-alert strong { color: #F87171; }
+.callout-emotional { background: rgba(167,139,250,0.08); border-color: var(--purple); color: #C4B5FD; }
+.callout-emotional strong { color: var(--purple); }
+.callout-success { background: rgba(240,192,64,0.08); border-color: var(--gold); color: var(--gold-light); }
+.callout-success strong { color: var(--gold); }
+.callout-gold { background: rgba(240,192,64,0.08); border-color: var(--gold); color: var(--gold-light); }
+.callout-gold strong { color: var(--gold); }
+.callout-fire { background: rgba(255,107,26,0.08); border-color: var(--fire); color: var(--fire-light); }
+
+/* ================================================================
+   CARDS
+   ================================================================ */
+.overview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.overview-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.overview-card:hover { background: var(--bg-card-hover); border-color: rgba(255,107,26,0.15); transform: translateY(-2px); }
+.overview-card-icon { font-size: 24px; margin-bottom: 12px; }
+.overview-card-label { font-family: var(--font-head); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+.overview-card-value { font-size: var(--text-xl); font-weight: 600; color: var(--text-primary); }
+.overview-card-note { font-size: 16px; color: var(--text-secondary); margin-top: 4px; }
+
+/* Profile cards */
+.profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.profile-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.profile-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.profile-card.jessica::before { background: linear-gradient(90deg, var(--tribe-pink), var(--gold)); }
+.profile-card.charlie::before { background: linear-gradient(90deg, var(--tribe-blue), var(--gold)); }
+.profile-card.steph::before { background: linear-gradient(90deg, var(--purple), var(--gold)); }
+.profile-role { font-family: var(--font-head); font-size: 16px; letter-spacing: 3px; text-transform: uppercase; color: var(--fire); margin-bottom: 4px; }
+.profile-name { font-family: var(--font-head); font-size: 40px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+.profile-details { list-style: none; }
+.profile-details li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 17px;
+  color: var(--text-secondary);
+}
+.profile-details li:last-child { border-bottom: none; }
+
+/* Tribe cards */
+.tribe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.tribe-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.tribe-card:hover { transform: scale(1.08); z-index: 10; box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+.tribe-card { cursor: pointer; }
+.tribe-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+.tribe-card.pink { border-color: rgba(232,49,138,0.2); }
+.tribe-card.pink::before { background: var(--tribe-pink); }
+.tribe-card.pink:hover { border-color: rgba(232,49,138,0.4); box-shadow: 0 8px 30px rgba(232,49,138,0.15); }
+.tribe-card.blue { border-color: rgba(30,111,217,0.2); }
+.tribe-card.blue::before { background: var(--tribe-blue); }
+.tribe-card.blue:hover { border-color: rgba(30,111,217,0.4); box-shadow: 0 8px 30px rgba(30,111,217,0.15); }
+.tribe-card.yellow { border-color: rgba(232,150,10,0.2); }
+.tribe-card.yellow::before { background: var(--tribe-yellow); }
+.tribe-card.yellow:hover { border-color: rgba(232,150,10,0.4); box-shadow: 0 8px 30px rgba(232,150,10,0.15); }
+.tribe-card.merge { border-color: rgba(26,158,143,0.25); animation: mergeGlow 3s ease-in-out infinite; }
+.tribe-card.merge::before { background: linear-gradient(90deg, var(--merge-teal), var(--merge-gold), var(--merge-teal)); }
+.tribe-card.merge:hover { border-color: rgba(26,158,143,0.5); }
+.tribe-buff-logo {
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 16/9;
+  object-fit: contain;
+  margin: 0 auto 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+  display: block;
+}
+.tribe-name { font-family: var(--font-head); font-size: 40px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 4px; }
+.tribe-meaning { font-size: var(--text-sm); color: var(--text-dim); margin-bottom: 8px; font-style: italic; }
+.tribe-hidden { font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.6; padding-top: 12px; border-top: 1px solid var(--border); }
+
+/* Challenge cards with colored top border by type */
+.challenge-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: all 0.3s;
+}
+.challenge-card:hover { border-color: rgba(255,107,26,0.15); }
+.challenge-card.physical:hover { border-top-color: #FF6B1A; }
+.challenge-card.mental:hover { border-top-color: #1E6FD9; }
+.challenge-card.social:hover { border-top-color: #A78BFA; }
+.challenge-card.puzzle:hover { border-top-color: #F0C040; }
+.challenge-card.comedy:hover { border-top-color: #E8318A; }
+.challenge-card.physical { border-top-color: #FF6B1A; }
+.challenge-card.mental { border-top-color: #1E6FD9; }
+.challenge-card.social { border-top-color: #A78BFA; }
+.challenge-card.puzzle { border-top-color: #F0C040; }
+.challenge-card.comedy { border-top-color: #E8318A; }
+.challenge-card-header {
+  padding: 20px 28px;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.challenge-card-header .challenge-name { color: var(--gold); margin-bottom: 0; }
+.challenge-header-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.challenge-card-body { padding: 24px 28px; }
+.challenge-extra {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-top: 12px;
+}
+.challenge-scoring {
+  font-family: var(--font-head);
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--gold);
+  padding: 12px 0;
+  margin-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.challenge-number { font-family: var(--font-head); font-size: 16px; letter-spacing: 3px; text-transform: uppercase; color: var(--fire); margin-bottom: 4px; }
+.challenge-name { font-family: var(--font-head); font-size: 34px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; color: var(--gold); }
+.challenge-meta { display: flex; flex-wrap: wrap; gap: 16px; font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: 12px; }
+.challenge-section { margin-bottom: 16px; }
+.challenge-section-title { font-family: var(--font-head); font-size: 18px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; text-decoration: underline; text-underline-offset: 4px; font-weight: 700; }
+.challenge-section p, .challenge-section ul { font-size: var(--text-base); color: var(--text-secondary); line-height: 1.7; }
+.challenge-section ul { list-style: none; padding-left: 0; }
+.challenge-section ul li { padding: 3px 0; padding-left: 16px; position: relative; }
+.challenge-section ul li::before { content: ''; position: absolute; left: 0; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--fire-dark); }
+
+/* Jeff script boxes */
+.jeff-script {
+  background: rgba(240,192,64,0.08);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  position: relative;
+  margin-top: 16px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.8;
+}
+.jeff-script::before {
+  content: '&#127908; JEFF PROBST';
+  position: absolute;
+  top: -10px; left: 16px;
+  font-family: var(--font-head);
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--bg-card);
+  padding: 2px 10px;
+  border-radius: 3px;
+}
+.jeff-script-full {
+  background: rgba(240,192,64,0.08);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 10px 10px 0;
+  padding: 24px 28px;
+  position: relative;
+  margin-bottom: 24px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.8;
+}
+.jeff-script-full::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -10px; left: 16px;
+  font-family: var(--font-head);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  background: var(--bg-primary);
+  padding: 2px 10px;
+  border-radius: 3px;
+}
+.jeff-script-full .script-time {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+/* Jeff's Pocket Card */
+.pocket-card {
+  background: linear-gradient(135deg, #C4A67D 0%, #D4B896 25%, #DCC8A4 50%, #D4B896 75%, #C4A67D 100%);
+  border-radius: 10px;
+  padding: 24px;
+  border: 2px dashed #8B6B4A;
+  color: #3D2B1F;
+  margin-bottom: 32px;
+  box-shadow: inset 0 0 40px rgba(61,43,31,0.2), 0 4px 16px rgba(0,0,0,0.3);
+}
+.pocket-card-title { font-family: var(--font-head); font-size: 24px; letter-spacing: 3px; color: #3D2B1F; margin-bottom: 4px; }
+.pocket-card-sub { font-size: 14px; color: #6B4F3A; margin-bottom: 16px; }
+.pocket-card table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+.pocket-card th { font-family: var(--font-head); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #6B4F3A; padding: 6px 8px; text-align: left; border-bottom: 1px solid #B8942A; }
+.pocket-card td { padding: 6px 8px; border-bottom: 1px solid rgba(139,107,74,0.3); color: #3D2B1F; }
+
+/* ================================================================
+   TIMELINE
+   ================================================================ */
+.timeline { position: relative; padding-left: 40px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--fire), var(--gold), var(--fire));
+}
+.timeline-phase { margin-bottom: 48px; }
+.timeline-phase-title {
+  font-family: var(--font-head);
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: var(--bg-primary);
+  border-radius: 6px;
+  display: inline-block;
+  position: sticky;
+  top: 60px;
+  z-index: 5;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 16px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  border-left: 3px solid var(--gold-dim);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.timeline-item:hover { background: var(--bg-card-hover); transform: translateX(8px); border-left-width: 5px; box-shadow: 0 4px 16px rgba(255,107,26,0.15); }
+.timeline-item:hover .timeline-expand { color: var(--fire); }
+.timeline-more-info {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--fire);
+  background: rgba(255,107,26,0.1);
+  border: 1px solid rgba(255,107,26,0.25);
+  border-radius: 4px;
+  padding: 4px 12px;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.timeline-more-info:hover { background: rgba(255,107,26,0.2); color: var(--gold); }
+.timeline-item.highlight { border-left-color: var(--fire); background: rgba(255,107,26,0.04); }
+.timeline-item.emotional { border-left-color: var(--purple); background: rgba(167,139,250,0.04); }
+.timeline-time { font-family: var(--font-head); font-size: var(--text-lg); letter-spacing: 1px; color: var(--fire); margin-bottom: 4px; }
+.timeline-event { font-size: var(--text-lg); font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+.timeline-detail { font-size: 17px; color: var(--text-secondary); line-height: 1.6; }
+.timeline-preview { font-size: 14px; color: var(--text-dim); margin-top: 2px; }
+.timeline-detail.collapsed { display: none; }
+.timeline-expand {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  color: var(--text-dim);
+  font-size: 14px;
+  transition: transform 0.3s;
+  pointer-events: none;
+}
+.timeline-expand.open { transform: rotate(180deg); }
+.timeline-dot {
+  position: absolute;
+  left: -33px; top: 20px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--gold-dim);
+  border: 2px solid var(--bg-primary);
+}
+.timeline-item.highlight .timeline-dot { width: 14px; height: 14px; left: -35px; background: var(--fire); box-shadow: 0 0 8px var(--fire-glow); }
+.timeline-item.emotional .timeline-dot { width: 14px; height: 14px; left: -35px; background: var(--purple); animation: emotionalPulse 2s infinite; }
+
+/* ================================================================
+   TABLES
+   ================================================================ */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; border: 1px solid var(--border); }
+.styled-table { width: 100%; border-collapse: collapse; font-size: 16px; }
+.styled-table thead { background: var(--bg-secondary); }
+.styled-table th { font-family: var(--font-head); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dim); padding: 14px 16px; text-align: left; white-space: nowrap; }
+.styled-table td { padding: 14px 16px; border-top: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
+.styled-table tbody tr { transition: background 0.2s; }
+.styled-table tbody tr:hover { background: var(--bg-card-hover); }
+
+/* ================================================================
+   CHECKLIST
+   ================================================================ */
+.setup-checklist { list-style: none; padding: 0; }
+.setup-checklist li {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 16px; color: var(--text-secondary);
+  cursor: pointer; transition: opacity 0.2s;
+}
+.setup-checklist li:last-child { border-bottom: none; }
+.check-box {
+  flex-shrink: 0; width: 22px; height: 22px;
+  border: 2px solid var(--gold-dim);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; margin-top: 1px;
+  min-width: 22px; min-height: 22px;
+}
+.check-box.checked { background: var(--gold); border-color: var(--gold); }
+.check-box.checked::after { content: '\2713'; color: var(--bg-primary); font-size: 13px; font-weight: 700; }
+.setup-checklist li:has(.checked) { opacity: 0.5; text-decoration: line-through; }
+
+/* ================================================================
+   SCOREBOARD
+   ================================================================ */
+.scoreboard { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.scoreboard-header { display: grid; grid-template-columns: 2fr repeat(7, 1fr) 1.2fr; background: var(--bg-secondary); padding: 12px 0; }
+.scoreboard-header span { font-family: var(--font-head); font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); text-align: center; padding: 0 8px; }
+.scoreboard-header span:first-child { text-align: left; padding-left: 16px; }
+.scoreboard-row { display: grid; grid-template-columns: 2fr repeat(7, 1fr) 1.2fr; padding: 12px 0; border-top: 1px solid var(--border); align-items: center; }
+.scoreboard-row span { text-align: center; font-size: 14px; color: var(--text-secondary); padding: 0 8px; }
+.scoreboard-row span:first-child { text-align: left; padding-left: 16px; font-family: var(--font-head); font-size: 16px; letter-spacing: 2px; }
+.scoreboard-row span:last-child { font-weight: 700; color: var(--gold); }
+.scoreboard-row.pink span:first-child { color: var(--tribe-pink); }
+.scoreboard-row.blue span:first-child { color: var(--tribe-blue); }
+.scoreboard-row.yellow span:first-child { color: var(--tribe-yellow); }
+
+/* ================================================================
+   PARCHMENT MAP
+   ================================================================ */
+.tribal-map-container {
+  background: linear-gradient(135deg, #C4A67D 0%, #D4B896 25%, #DCC8A4 50%, #D4B896 75%, #C4A67D 100%);
+  border-radius: 10px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 60px rgba(61,43,31,0.3), inset 0 0 120px rgba(61,43,31,0.15), 0 8px 32px rgba(0,0,0,0.4);
+  border: 2px solid #8B6B4A;
+}
+.tribal-map-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ================================================================
+   CAST, TREE MAIL, MOMENTS, BUDGET, IDOL, ROLE
+   ================================================================ */
+.cast-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; }
+.cast-slot { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; text-align: center; transition: all 0.3s; }
+.cast-slot:hover { border-color: rgba(255,107,26,0.2); transform: translateY(-2px); }
+.cast-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--bg-secondary); margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--text-dim); border: 2px solid var(--border); }
+.cast-slot.tribe-pink .cast-avatar { border-color: rgba(232,49,138,0.3); }
+.cast-slot.tribe-blue .cast-avatar { border-color: rgba(30,111,217,0.3); }
+.cast-slot.tribe-yellow .cast-avatar { border-color: rgba(232,150,10,0.3); }
+.cast-name { font-family: var(--font-head); font-size: 16px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-primary); margin-bottom: 4px; }
+.cast-info { font-size: var(--text-sm); color: var(--text-dim); line-height: 1.5; }
+.tribe-header { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin: 40px 0 20px; }
+.tribe-header-logo { width: 280px; height: auto; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+.tribe-header-name { font-family: var(--font-head); font-size: 22px; letter-spacing: 3px; text-transform: uppercase; }
+
+.tree-mail-card { background: rgba(240,192,64,0.04); border: 1px solid rgba(240,192,64,0.15); border-radius: 10px; padding: 24px; margin-bottom: 16px; }
+.tree-mail-label { font-family: var(--font-head); font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.tree-mail-poem { font-family: var(--font-body); font-size: 17px; color: var(--text-primary); line-height: 1.9; }
+
+.idol-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+.idol-card { background: var(--bg-card); border: 1px solid rgba(240,192,64,0.15); border-radius: 12px; padding: 28px; position: relative; }
+.idol-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--fire)); }
+
+.moments-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.moment-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 24px; transition: all 0.3s; border-left: 3px solid var(--fire); }
+.moment-card:hover { background: var(--bg-card-hover); transform: translateY(-2px); }
+.moment-card.emotional-moment { border-left-color: var(--gold); }
+.moment-card.special-moment { border-left-color: var(--purple); }
+.moment-time { font-family: var(--font-head); font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: var(--fire); margin-bottom: 6px; }
+.moment-name { font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+.moment-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
+.budget-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+.budget-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; text-align: center; }
+.budget-label { font-family: var(--font-head); font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+.budget-value { font-size: 22px; font-weight: 700; color: var(--gold); }
+.budget-card.total { border-color: rgba(240,192,64,0.3); background: rgba(240,192,64,0.06); }
+
+.role-legend { display: flex; flex-wrap: wrap; gap: 24px; padding: 24px 0; margin-bottom: 32px; }
+.role-legend-item { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 600; color: var(--text-secondary); }
+.role-legend-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; }
+.role-legend-dot.jeff { background: var(--gold); }
+.role-legend-dot.steph { background: var(--purple); }
+.role-legend-dot.helper { background: var(--green); }
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+.footer { text-align: center; padding: 60px 24px 40px; border-top: 1px solid var(--border); }
+.footer-tagline { font-family: var(--font-head); font-size: 24px; letter-spacing: 6px; text-transform: uppercase; background: linear-gradient(135deg, var(--fire), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+.footer-birthday { font-family: var(--font-head); font-size: 28px; letter-spacing: 3px; color: var(--text-primary); margin-bottom: 20px; }
+.footer-fine { font-size: var(--text-xs); color: var(--text-dim); line-height: 1.8; }
+
+/* ================================================================
+   AFTER DARK
+   ================================================================ */
+.section-night {
+  background: linear-gradient(180deg, #0a0603, #0d0a14, #1a1008);
+  border-top: 1px solid var(--fire-dark);
+  position: relative;
+}
+.section-night::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(255,107,26,0.1), transparent);
+  pointer-events: none;
+}
+.night-game-card {
+  background: #150c06;
+  border: 1px solid rgba(255,107,26,0.2);
+  border-left: 4px solid var(--fire);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.night-game-card h4 {
+  font-family: var(--font-head);
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--fire);
+  margin-bottom: 8px;
+}
+.night-game-card p, .night-game-card ul {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.night-game-card ul { list-style: none; padding-left: 0; }
+.night-game-card ul li { padding: 4px 0; padding-left: 16px; position: relative; }
+.night-game-card ul li::before { content: ''; position: absolute; left: 0; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: var(--fire-dark); }
+.night-callout {
+  background: rgba(255,107,26,0.06);
+  border: 2px solid rgba(255,107,26,0.3);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 28px;
+}
+.night-callout h3 {
+  font-family: var(--font-head);
+  font-size: 26px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--fire);
+  margin-bottom: 12px;
+}
+.night-timeline-item {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,107,26,0.1);
+}
+.night-timeline-time {
+  font-family: var(--font-head);
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: var(--fire);
+  min-width: 90px;
+  flex-shrink: 0;
+}
+.night-timeline-event {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.night-timeline-event strong { color: var(--text-primary); }
+.centerpiece-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.centerpiece-card {
+  background: #150c06;
+  border: 1px solid rgba(240,192,64,0.2);
+  border-radius: 10px;
+  padding: 24px;
+}
+.centerpiece-card h4 {
+  font-family: var(--font-head);
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.centerpiece-card p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Parchment-style callout boxes */
+.parchment-box {
+  background: linear-gradient(135deg, #C4A67D 0%, #D4B896 25%, #DCC8A4 50%, #D4B896 75%, #C4A67D 100%);
+  border-radius: 10px;
+  padding: 24px;
+  border: 2px dashed #8B6B4A;
+  color: #3D2B1F;
+  box-shadow: inset 0 0 40px rgba(61,43,31,0.2), 0 4px 16px rgba(0,0,0,0.3);
+  margin-bottom: 24px;
+}
+.parchment-box h4 {
+  font-family: var(--font-head);
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: #3D2B1F;
+  margin-bottom: 8px;
+}
+.parchment-box p, .parchment-box ul {
+  font-size: 15px;
+  color: #4A3628;
+  line-height: 1.7;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 768px) {
+  .progress-sidebar { display: none; }
+  .main-content { margin-left: 0; }
+  .top-nav-links { display: none; }
+  .top-nav-links.open { display: flex; position: absolute; top: 56px; left: 0; right: 0; background: rgba(26,16,8,0.98); flex-direction: column; padding: 8px 0; border-bottom: 1px solid var(--border); z-index: 1001; }
+  .top-nav-hamburger { display: block; }
+  .hero-title { letter-spacing: 4px; }
+  .hero-meta { gap: 16px; }
+  .hero-buff-row { flex-direction: column; align-items: center; gap: 16px; }
+  .hero-buff-row img { width: 220px; }
+  .timeline-item { padding: 14px 0 14px 44px; }
+  .profile-grid { grid-template-columns: 1fr; }
+  .tribe-grid { grid-template-columns: 1fr; }
+  .overview-grid { grid-template-columns: 1fr; }
+  .idol-grid { grid-template-columns: 1fr; }
+  .moments-grid { grid-template-columns: 1fr; }
+  .budget-grid { grid-template-columns: repeat(2, 1fr); }
+  .cast-grid { grid-template-columns: repeat(2, 1fr); }
+  .section { padding: 44px 0; }
+  .pocket-card table { font-size: 12px; }
+  .pocket-card table td, .pocket-card table th { padding: 5px 4px; }
+  .countdown-badge { font-size: 18px; letter-spacing: 2px; padding: 10px 24px; }
+  .tribe-header { flex-wrap: wrap; }
+  .tribe-buff-logo { max-width: 100%; }
+  .footer { margin-left: 0 !important; }
+}
+@media (max-width: 480px) {
+  .budget-grid { grid-template-columns: 1fr; }
+  .cast-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ================================================================
+   PRINT
+   ================================================================ */
+@media print {
+  body { background: white; color: black; font-size: 12px; }
+  body::after { display: none; }
+  .top-nav, .progress-sidebar, .hero-fire, .hero-scroll, .hero::after, .hero::before { display: none; }
+  .main-content { margin-left: 0; margin-top: 0; }
+  .hero { min-height: auto; padding: 40px 0; }
+  .hero-title { font-size: 36px; color: black; animation: none; text-shadow: none; }
+  .hero-subtitle { -webkit-text-fill-color: #333; font-size: 24px; }
+  .section { padding: 20px 0; page-break-inside: avoid; }
+  .overview-card, .tribe-card, .profile-card, .challenge-card, .idol-card, .moment-card, .budget-card, .cast-slot, .tree-mail-card, .jeff-script, .jeff-script-full, .callout, .scoreboard { background: white; border-color: #ccc; box-shadow: none; animation: none; }
+  .animate-on-scroll { opacity: 1; transform: none; }
+  .fire-gradient, .gold-gradient { -webkit-text-fill-color: black; }
+  a { color: black; }
+  .section-label { color: #666; }
+  .styled-table th { background: #eee; color: #333; }
+  .styled-table td { color: #333; }
+  .pocket-card { page-break-before: always; border: 2px dashed #666; }
+  .tribal-map-container { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .footer { margin-left: 0 !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     TOP NAVIGATION
+     ================================================================ -->
+<nav class="top-nav" id="topNav">
+  <div class="top-nav-brand">
+    <img src="Buff Designs/Use/The Ville (Chinese).jpg" alt="Logo" style="width:36px;height:36px;border-radius:6px;object-fit:cover;">
+    <span style="font-family:var(--font-head);font-size:18px;letter-spacing:4px;color:var(--fire);">SURVIVOR</span>
+    <span style="font-family:var(--font-head);font-size:12px;letter-spacing:2px;color:var(--text-dim);">S30</span>
+  </div>
+  <div class="top-nav-links" id="topNavLinks">
+    <a href="#overview">Overview</a>
+    <a href="#cast">Cast</a>
+    <a href="#tribes">Tribes</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#challenges">Challenges</a>
+    <a href="#auction">Auction</a>
+    <a href="#scripts">Scripts</a>
+    <a href="#scoring">Scoring</a>
+    <a href="#treemail">Tree Mail</a>
+    <a href="#idols">Idols</a>
+    <a href="#confessional">Confessional</a>
+    <a href="#setup">Setup</a>
+    <a href="#map">Map</a>
+    <a href="#parkpack">Park Pack</a>
+    <a href="#contingency">Plan B</a>
+    <a href="#music">Music</a>
+    <a href="#photos">Photos</a>
+    <a href="#reunion">Reunion</a>
+    <a href="#moments">Moments</a>
+    <a href="#keepsakes">Keepsakes</a>
+    <a href="#afterdark">After Dark</a>
+  </div>
+  <button class="top-nav-hamburger" id="hamburgerBtn" aria-label="Toggle menu">&#9776;</button>
+</nav>
+
+<!-- ================================================================
+     PROGRESS SIDEBAR
+     ================================================================ -->
+<div class="progress-sidebar" id="progressSidebar">
+  <div class="scroll-indicator" id="scrollIndicator">&#128293;</div>
+  <div class="progress-sidebar-dot" data-label="Overview" data-section="overview" style="border-color:var(--gold);"></div>
+  <div class="progress-sidebar-dot-label">INFO</div>
+  <div class="progress-sidebar-dot" data-label="Cast" data-section="cast" style="border-color:var(--tribe-pink);"></div>
+  <div class="progress-sidebar-dot-label">CAST</div>
+  <div class="progress-sidebar-dot" data-label="Tribes" data-section="tribes" style="border-color:var(--tribe-blue);"></div>
+  <div class="progress-sidebar-dot-label">TRIBE</div>
+  <div class="progress-sidebar-dot" data-label="Timeline" data-section="timeline" style="border-color:var(--gold);"></div>
+  <div class="progress-sidebar-dot-label">TIME</div>
+  <div class="progress-sidebar-dot" data-label="Challenges" data-section="challenges" style="border-color:var(--fire);"></div>
+  <div class="progress-sidebar-dot-label">CH</div>
+  <div class="progress-sidebar-dot" data-label="Auction" data-section="auction" style="border-color:var(--gold);"></div>
+  <div class="progress-sidebar-dot-label">BID</div>
+  <div class="progress-sidebar-dot" data-label="Scripts" data-section="scripts" style="border-color:var(--fire);"></div>
+  <div class="progress-sidebar-dot-label">JEFF</div>
+  <div class="progress-sidebar-dot" data-label="Scoring" data-section="scoring" style="border-color:var(--gold);"></div>
+  <div class="progress-sidebar-dot-label">PTS</div>
+  <div class="progress-sidebar-dot" data-label="Tree Mail" data-section="treemail" style="border-color:var(--gold);"></div>
+  <div class="progress-sidebar-dot-label">MAIL</div>
+  <div class="progress-sidebar-dot" data-label="Idols" data-section="idols" style="border-color:var(--fire);"></div>
+  <div class="progress-sidebar-dot-label">IDOL</div>
+  <div class="progress-sidebar-dot" data-label="Setup" data-section="setup" style="border-color:var(--gold);"></div>
+  <div class="progress-sidebar-dot-label">PREP</div>
+  <div class="progress-sidebar-dot" data-label="Moments" data-section="moments" style="border-color:var(--purple);"></div>
+  <div class="progress-sidebar-dot-label">KEY</div>
+  <div class="progress-sidebar-dot" data-label="After Dark" data-section="afterdark" style="border-color:var(--fire);"></div>
+  <div class="progress-sidebar-dot-label">NITE</div>
+</div>
+
+<!-- ================================================================
+     MAIN CONTENT
+     ================================================================ -->
+<div class="main-content">
+
+<!-- ================================================================
+     HERO
+     ================================================================ -->
+<section class="hero" id="hero">
+  <div class="hero-fire"></div>
+  <div class="hero-content">
+    <div class="hero-badge" style="background:rgba(167,139,250,0.15);border-color:var(--purple);color:var(--purple);">Review Copy for Stephanie Siemens, Co-Executive Producer</div>
+    <h1 class="hero-title">SURVIVOR</h1>
+    <p class="hero-subtitle">Jessica's Dirty 30</p>
+    <p class="hero-custom-tagline">Outteach. Outplay. Outthirty.</p>
+    <div class="hero-meta">
+      <span class="hero-meta-item"><span class="hero-meta-icon">&#9733;</span> Saturday, May 2nd, 2026</span>
+      <span class="hero-meta-item"><span class="hero-meta-icon">&#9673;</span> Danville, California</span>
+      <span class="hero-meta-item"><span class="hero-meta-icon">&#9830;</span> 18 Castaways</span>
+    </div>
+    <div class="countdown-badge" id="countdown"></div><br>
+    <div class="hero-buff-row">
+      <img src="Buff Designs/Use/The Yoc (chinese).jpg" alt="The Yoc" data-tribe="yoc" onclick="showTribeOverlay('yoc')">
+      <img src="Buff Designs/Use/Menalua 2 (use).png" alt="Menalua" data-tribe="menalua" onclick="showTribeOverlay('menalua')">
+      <img src="Buff Designs/Use/Diabla 2 (chinese).png" alt="Diabla" data-tribe="diabla" onclick="showTribeOverlay('diabla')">
+    </div>
+    <div class="merge-arrow-zone">
+      <svg width="300" height="70" viewBox="0 0 300 70">
+        <circle cx="40" cy="10" r="8" fill="#E8318A" opacity="0.8"/>
+        <circle cx="150" cy="10" r="8" fill="#1E6FD9" opacity="0.8"/>
+        <circle cx="260" cy="10" r="8" fill="#E8960A" opacity="0.8"/>
+        <line x1="40" y1="18" x2="150" y2="55" stroke="#E8318A" stroke-width="2" stroke-dasharray="6,3" opacity="0.7"/>
+        <line x1="150" y1="18" x2="150" y2="55" stroke="#1E6FD9" stroke-width="2" stroke-dasharray="6,3" opacity="0.7"/>
+        <line x1="260" y1="18" x2="150" y2="55" stroke="#E8960A" stroke-width="2" stroke-dasharray="6,3" opacity="0.7"/>
+        <circle cx="150" cy="58" r="10" fill="#F0C040" opacity="0.9"/>
+        <circle cx="150" cy="58" r="14" fill="none" stroke="#F0C040" stroke-width="1" opacity="0.4"/>
+      </svg>
+      <div style="font-family:var(--font-head);font-size:20px;letter-spacing:6px;color:var(--gold);">DROP YOUR BUFFS</div>
+    </div>
+    <div class="hero-producers">
+      <div class="hero-producers-label">Co-Executive Producers</div>
+      <div class="hero-producers-names">Charlie Moran &amp; Stephanie Siemens</div>
+    </div>
+    <br>
+    <img src="Buff Designs/Use/The Ville (Chinese).jpg" alt="The Ville Merge Buff: Season Logo" class="hero-merge-buff" loading="lazy">
+    <div class="hero-scroll">
+      <span>Scroll to Begin</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLE LEGEND -->
+<div class="container" style="margin-top:24px;">
+  <div class="role-legend">
+    <div class="role-legend-item"><div class="role-legend-dot jeff"></div> &#127916; Charlie (Host)</div>
+    <div class="role-legend-item"><div class="role-legend-dot steph"></div> &#127917; Co-Executive Producer (Stephanie)</div>
+    <div class="role-legend-item"><div class="role-legend-dot helper"></div> &#127914; Helper</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     OVERVIEW
+     ================================================================ -->
+<section class="section" id="overview">
+  <div class="container">
+    <span class="section-label">&#127796; Season 30</span>
+    <h2 class="section-title">Event Overview</h2>
+    <div class="overview-grid animate-on-scroll">
+      <div class="overview-card"><div class="overview-card-icon">&#127796;</div><div class="overview-card-label">Event</div><div class="overview-card-value">Survivor: Jessica's Dirty 30</div></div>
+      <div class="overview-card"><div class="overview-card-icon">&#128197;</div><div class="overview-card-label">Date</div><div class="overview-card-value">Saturday, May 2nd, 2026</div></div>
+      <div class="overview-card"><div class="overview-card-icon">&#127968;</div><div class="overview-card-label">Location</div><div class="overview-card-value">Danville, CA</div><div class="overview-card-note">Home + Diablo Vista Park (walkable)</div></div>
+      <div class="overview-card"><div class="overview-card-icon">&#128101;</div><div class="overview-card-label">Guest Count</div><div class="overview-card-value">~18 People</div><div class="overview-card-note">6 per tribe, ages 10 through 65</div></div>
+      <div class="overview-card"><div class="overview-card-icon">&#128336;</div><div class="overview-card-label">Schedule</div><div class="overview-card-value">12:00 PM to 8:30 PM+</div><div class="overview-card-note">Arrival 12 | Games 2 | Dinner 6</div></div>
+      <div class="overview-card"><div class="overview-card-icon">&#127942;</div><div class="overview-card-label">Eliminations</div><div class="overview-card-value">Final Tribal Elimination Vote</div><div class="overview-card-note">Everyone plays all day. Jessica is crowned Sole Survivor at Final Tribal Council.</div></div>
+      <div class="overview-card"><div class="overview-card-icon">&#128373;</div><div class="overview-card-label">Secrecy</div><div class="overview-card-value">Jessica Knows the Theme</div><div class="overview-card-note">She knows it's Survivor-themed but has no idea about the challenges, tribes, scripts, or how far this goes.</div></div>
+      <div class="overview-card"><div class="overview-card-icon">&#127860;</div><div class="overview-card-label">Dietary</div><div class="overview-card-value">All Food Is Nut-Free</div><div class="overview-card-note">Verify with every vendor and caterer.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     CAST
+     ================================================================ -->
+<section class="section" id="cast">
+  <div class="container">
+    <span class="section-label">&#127917; The Players</span>
+    <h2 class="section-title">Cast of Season 30</h2>
+    <div class="profile-grid animate-on-scroll">
+      <div class="profile-card jessica">
+        <div class="profile-role">&#127874; The Birthday Girl / Sole Survivor</div>
+        <div class="profile-name">Jessica</div>
+        <ul class="profile-details">
+          <li>&#127874; Age: 30 (May 2, 1996)</li>
+          <li>&#128207; Height: 5'8"</li>
+          <li>&#127968; Hometown: Antioch, CA</li>
+          <li>&#127891; Education: M.Ed. | Sonoma State University (D2 Soccer)</li>
+          <li>&#9917; D2 Athlete (Soccer, Sonoma State University)</li>
+          <li>&#128188; Career: Masters-Educated Elementary School Teacher, Parkmead Elementary</li>
+          <li>&#10084;&#65039; Status: Married to Charlie (the host!)</li>
+          <li>&#127916; Loves: Reality TV, romantic comedies, family time</li>
+          <li>&#127956; Now lives: Danville, CA</li>
+        </ul>
+      </div>
+      <div class="profile-card charlie">
+        <div class="profile-role">&#127908; Host / "Jeff Probst"</div>
+        <div class="profile-name">Charlie Moran</div>
+        <ul class="profile-details">
+          <li>&#127908; Role: Host / "Jeff Probst"</li>
+          <li>&#128207; Height: 6'3"</li>
+          <li>&#127968; Hometown: Menlo Park, CA</li>
+          <li>&#128170; Bio: Absolute stud and athlete</li>
+          <li>&#128084; Costume: Blue button-down, khaki cargo shorts, boots, baseball cap</li>
+          <li>&#127916; Survivor Fan: Watching Season 35 with Jessica</li>
+          <li>&#127956; Now Lives: Danville, CA</li>
+        </ul>
+      </div>
+      <div class="profile-card steph">
+        <div class="profile-role">&#127916; Co-Executive Producer</div>
+        <div class="profile-name">Stephanie Siemens</div>
+        <ul class="profile-details">
+          <li>&#127916; Role: Co-Executive Producer</li>
+          <li>&#128205; Location: Walnut Creek, CA</li>
+          <li>&#127775; Background: World-class event planner</li>
+          <li>&#128111; Connection: Jessica's sister's bestie</li>
+          <li>&#128054; Dog Mom: Owner of Brody</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <span class="section-label">&#127775; Full Roster</span>
+    <h3 class="section-title" style="font-size:clamp(22px,4vw,32px);">The 18 Castaways</h3>
+
+    <div class="tribe-header"><img src="Buff Designs/Use/The Yoc (chinese).jpg" alt="The Yoc Buff" class="tribe-header-logo" loading="lazy"><span class="tribe-header-name" style="color:var(--tribe-pink);">The Yoc (Pink)</span></div>
+    <div class="cast-grid animate-on-scroll">
+      <div class="cast-slot tribe-pink"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-pink"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-pink"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-pink"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-pink"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-pink"><div class="cast-avatar">&#9917;</div><div class="cast-name">Jessica</div><div class="cast-info">Age: 30<br>Connection: Birthday Girl<br>Fun Fact: Soccer star turned teacher</div></div>
+    </div>
+
+    <div class="tribe-header"><img src="Buff Designs/Use/Menalua 2 (use).png" alt="Menalua Buff" class="tribe-header-logo" loading="lazy"><span class="tribe-header-name" style="color:var(--tribe-blue);">Menalua (Blue)</span></div>
+    <div class="cast-grid animate-on-scroll">
+      <div class="cast-slot tribe-blue"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-blue"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-blue"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-blue"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-blue"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-blue"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+    </div>
+
+    <div class="tribe-header"><img src="Buff Designs/Use/Diabla 2 (chinese).png" alt="Diabla Buff" class="tribe-header-logo" loading="lazy"><span class="tribe-header-name" style="color:var(--tribe-yellow);">Diabla (Yellow)</span></div>
+    <div class="cast-grid animate-on-scroll">
+      <div class="cast-slot tribe-yellow"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-yellow"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-yellow"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-yellow"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-yellow"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+      <div class="cast-slot tribe-yellow"><div class="cast-avatar">&#128100;</div><div class="cast-name">[TBD]</div><div class="cast-info">Age: <br>Connection: <br>Fun Fact: </div></div>
+    </div>
+
+    <div class="callout callout-gold" style="margin-top:24px;"><strong>&#9878; Tribe Assignment Strategy:</strong> Mix families (Antioch + Menlo Park). Balance ages (~2 kids, ~4 adults per tribe). Balance athletic ability. Jessica placed on The Yoc.</div>
+  </div>
+</section>
+
+<!-- ================================================================
+     TRIBES
+     ================================================================ -->
+<section class="section" id="tribes">
+  <div class="container">
+    <span class="section-label">&#9876; Three Tribes, One Family</span>
+    <h2 class="section-title">Tribe Structure</h2>
+    <p class="section-subtitle">Each tribe name hides a chapter of Jessica's life. The meaning is revealed at the merge.</p>
+    <div class="tribe-grid animate-on-scroll">
+      <div class="tribe-card pink">
+        <img src="Buff Designs/Use/The Yoc (chinese).jpg" alt="The Yoc Tribe Buff" class="tribe-buff-logo" loading="lazy">
+        <div class="tribe-name">The Yoc</div>
+        <div class="tribe-meaning">Antioch slang for Antioch</div>
+        <span class="tag" style="background:var(--tribe-pink-bg);color:var(--tribe-pink);border:1px solid rgba(232,49,138,0.3);">Pink Buffs</span>
+        <div class="tribe-hidden">Named for Anti-OC(h). Jessica's hometown, hidden in the name.</div>
+      </div>
+      <div class="tribe-card blue">
+        <img src="Buff Designs/Use/Menalua 2 (use).png" alt="Menalua Tribe Buff" class="tribe-buff-logo" loading="lazy">
+        <div class="tribe-name">Menalua</div>
+        <div class="tribe-meaning">Menlo Park + Polynesian suffix</div>
+        <span class="tag" style="background:var(--tribe-blue-bg);color:var(--tribe-blue);border:1px solid rgba(30,111,217,0.3);">Blue Buffs</span>
+        <div class="tribe-hidden">MEN(lo Park) + alua (Hawaiian for "wave"). Charlie's hometown, disguised.</div>
+      </div>
+      <div class="tribe-card yellow">
+        <img src="Buff Designs/Use/Diabla 2 (chinese).png" alt="Diabla Tribe Buff" class="tribe-buff-logo" loading="lazy">
+        <div class="tribe-name">Diabla</div>
+        <div class="tribe-meaning">Mt. Diablo / Danville</div>
+        <span class="tag" style="background:var(--tribe-yellow-bg);color:var(--tribe-yellow);border:1px solid rgba(232,150,10,0.3);">Yellow Buffs</span>
+        <div class="tribe-hidden">Mt. DIABL(o) + feminine "a". Where Jessica lives now.</div>
+      </div>
+      <div class="tribe-card merge">
+        <img src="Buff Designs/Use/The Ville (Chinese).jpg" alt="The Ville Merge Buff" class="tribe-buff-logo" loading="lazy">
+        <div class="tribe-name" style="color:var(--merge-teal);">The Ville</div>
+        <div class="tribe-meaning">Danville (Merge Tribe)</div>
+        <span class="tag" style="background:var(--merge-bg);color:var(--merge-teal);border:1px solid rgba(26,158,143,0.3);">Teal + Gold Merge Buffs</span>
+        <div class="tribe-hidden">Dan-VILLE. The merge unites all three chapters of Jessica's life.</div>
+      </div>
+    </div>
+    <div class="callout callout-emotional" style="margin-top:32px;"><strong>&#10024; The Big Reveal (5:45 PM):</strong> Jeff explains: The Yoc = Antioch. Menalua = Menlo Park. Diabla = Mt. Diablo/Danville. She has been playing on her own turf all day.</div>
+  </div>
+</section>
+
+<!-- ================================================================
+     TIMELINE
+     ================================================================ -->
+<section class="section" id="timeline">
+  <div class="container">
+    <span class="section-label">&#128203; Minute by Minute</span>
+    <h2 class="section-title">Master Timeline</h2>
+    <div class="timeline">
+      <div class="timeline-phase"><h3 class="timeline-phase-title fire-gradient">&#127796; Pre-Game (12:00 to 1:45 PM)</h3>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">12:00 PM</div><div class="timeline-event">&#128075; Guests Arrive</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Snack station open. Survivor soundtrack playing. Confessional booth open. Slips guests paper + pens for Letters from Home.</div></div>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">12:30 PM</div><div class="timeline-event">&#129525; Buff Ceremony</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Jeff gathers everyone. Hand out buffs. Explain rules. Group photo. <span class="role-badge role-jeff">Charlie</span></div></div>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">1:00 PM</div><div class="timeline-event">&#128248; Tribe Time + Photos</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Teams take photos in matching buffs. Confessional booth visits.</div></div>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">1:30 PM</div><div class="timeline-event">&#128220; Tree Mail #1</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">First scroll delivered.</div></div>
+        <div class="timeline-item highlight animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">1:45 PM</div><div class="timeline-event">&#127916; Opening Ceremony</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Jeff's opening speech. <span class="role-badge role-jeff">Charlie</span></div></div>
+      </div>
+      <div class="timeline-phase"><h3 class="timeline-phase-title fire-gradient">&#9876; Challenge Block 1 (2:00 to 3:20 PM)</h3>
+        <div class="timeline-item highlight animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">2:00 PM</div><div class="timeline-event">&#128566; CH1: Blindfold Relay + Fire Puzzle</div><div class="timeline-preview">Backyard | ~20 min</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Backyard | ~20 min <span class="role-badge role-jeff">Charlie</span> <a href="#challenges" class="timeline-more-info">More Info &rarr;</a></div></div>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">2:25 PM</div><div class="timeline-event">&#128203; Transition + Scores</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Update scoreboard.</div></div>
+        <div class="timeline-item highlight animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">2:30 PM</div><div class="timeline-event">&#129504; CH2: Jessica / 5th Grade Trivia</div><div class="timeline-preview">Home | ~15 min</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Home | ~15 min <span class="role-badge role-jeff">Charlie</span> <a href="#challenges" class="timeline-more-info">More Info &rarr;</a></div></div>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">2:50 PM</div><div class="timeline-event">&#9749; Break</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Deliver Tree Mail #3. Prep to walk to park.</div></div>
+        <div class="timeline-item highlight animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">3:00 PM</div><div class="timeline-event">&#9917; CH3: Soccer Shootout</div><div class="timeline-preview">Diablo Vista Park | ~15 min</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Diablo Vista Park | ~15 min <span class="role-badge role-jeff">Charlie</span> <a href="#challenges" class="timeline-more-info">More Info &rarr;</a></div></div>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">3:20 PM</div><div class="timeline-event">&#128694; Walk Back</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed"><span class="role-badge role-helper">Helper</span> packs up park gear.</div></div>
+      </div>
+      <div class="timeline-phase"><h3 class="timeline-phase-title gold-gradient">&#128176; Survivor Auction (3:30 to 4:15 PM)</h3>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">3:30 PM</div><div class="timeline-event">&#128181; Auction Setup</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">$500 Survivor Bucks per player. No sharing. $20 increments. <span class="role-badge role-jeff">Charlie</span></div></div>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">3:35 PM</div><div class="timeline-event">&#128276; The Survivor Auction</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">12 items, ~2 to 3 min each. <a href="#auction" class="timeline-more-info">More Info &rarr;</a></div></div>
+        <div class="timeline-item emotional animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">4:05 PM</div><div class="timeline-event">&#128140; Letters from Home (Item #9)</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed"><strong>Emotional peak.</strong> Seal envelope before 3:30 PM.</div></div>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">4:15 PM</div><div class="timeline-event">&#128167; Auction Ends</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">15 min break.</div></div>
+      </div>
+      <div class="timeline-phase"><h3 class="timeline-phase-title fire-gradient">&#9876; Challenge Block 2 (4:30 to 5:30 PM)</h3>
+        <div class="timeline-item highlight animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">4:30 PM</div><div class="timeline-event">&#129398; CH4: Frozen T-Shirt SURPRISE</div><div class="timeline-preview">Backyard | ~5 to 10 min</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Backyard | ~5 to 10 min <span class="role-badge role-jeff">Charlie</span> <a href="#challenges" class="timeline-more-info">More Info &rarr;</a></div></div>
+        <div class="timeline-item highlight animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">4:45 PM</div><div class="timeline-event">&#128289; CH5: Word Scramble Relay</div><div class="timeline-preview">Backyard | ~15 min</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Backyard | ~15 min <span class="role-badge role-jeff">Charlie</span> <a href="#challenges" class="timeline-more-info">More Info &rarr;</a></div></div>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">5:05 PM</div><div class="timeline-event">&#127839; Snack Break</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Deliver Tree Mail #6.</div></div>
+        <div class="timeline-item highlight animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">5:15 PM</div><div class="timeline-event">&#127912; CH6: Touchy Subjects with Balloons</div><div class="timeline-preview">Home | ~15 min</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Home | ~15 min <span class="role-badge role-jeff">Charlie</span> <a href="#challenges" class="timeline-more-info">More Info &rarr;</a></div></div>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">5:30 PM</div><div class="timeline-event">&#9989; Pre-Merge Challenges Complete</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">All six team challenges done.</div></div>
+      </div>
+      <div class="timeline-phase"><h3 class="timeline-phase-title gold-gradient">&#10024; The Merge (5:40 to 5:55 PM)</h3>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">5:40 PM</div><div class="timeline-event">&#127909; "Previously On..." Recap</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Jeff recaps the day. <span class="role-badge role-jeff">Charlie</span></div></div>
+        <div class="timeline-item emotional animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">5:45 PM</div><div class="timeline-event">&#128171; Drop Your Buffs: The Merge</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed"><strong>Teal "The Ville" merge buffs.</strong> Jeff reveals the tribe name meanings. <span class="role-badge role-jeff">Charlie</span> <a href="#tribes" class="timeline-more-info">More Info &rarr;</a></div></div>
+      </div>
+      <div class="timeline-phase"><h3 class="timeline-phase-title gold-gradient">&#127860; Merge Feast (6:00 to 6:45 PM)</h3>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">6:00 PM</div><div class="timeline-event">&#127869; The Merge Feast</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Catered dinner. Confirm nut-free with all vendors.</div></div>
+        <div class="timeline-item emotional animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">6:20 PM</div><div class="timeline-event">&#128149; Loved Ones Moment</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Emotional Survivor music. Staged family message.</div></div>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">6:35 PM</div><div class="timeline-event">&#128514; Most Likely To</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Unscored social game. Wind-down energy.</div></div>
+      </div>
+      <div class="timeline-phase"><h3 class="timeline-phase-title fire-gradient">&#128293; The Finale (7:00 to 8:30 PM+)</h3>
+        <div class="timeline-item highlight animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">7:00 PM</div><div class="timeline-event">&#129513; CH7: Final Immunity: Tree Puzzle</div><div class="timeline-preview">Backyard / Garage | ~15 min</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Tree Puzzle Speed Race | ~15 min <span class="role-badge role-jeff">Charlie</span> <a href="#challenges" class="timeline-more-info">More Info &rarr;</a></div></div>
+        <div class="timeline-item emotional animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">7:30 PM</div><div class="timeline-event">&#128293; Final Tribal Council</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Garage. LED torches. Legacy Notes + votes. Coordinate: Jessica gets all votes. <a href="#scripts" class="timeline-more-info">More Info &rarr;</a></div></div>
+        <div class="timeline-item emotional animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">7:50 PM</div><div class="timeline-event">&#128081; The Vote: Sole Survivor Crowned</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Jeff reads votes. Maximum drama. Jessica wins. <span class="role-badge role-jeff">Charlie</span> <a href="#scripts" class="timeline-more-info">More Info &rarr;</a></div></div>
+        <div class="timeline-item emotional animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">8:00 PM</div><div class="timeline-event">&#127874; Birthday Cake</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">30 candles. Jeff's closing speech. <span class="role-badge role-jeff">Charlie</span></div></div>
+        <div class="timeline-item animate-on-scroll"><div class="timeline-dot"></div><div class="timeline-time">8:15 PM+</div><div class="timeline-event">&#127881; Reunion Show</div><span class="timeline-expand">&#9660;</span><div class="timeline-detail collapsed">Hang out, drinks, confessional reel. Everyone keeps buffs.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     CHALLENGES
+     ================================================================ -->
+<section class="section" id="challenges">
+  <div class="container">
+    <span class="section-label">&#127942; The Playbook</span>
+    <h2 class="section-title">All 7 Challenges</h2>
+
+    <div class="challenge-card physical animate-on-scroll">
+      <div class="challenge-card-header">
+        <div>
+          <div class="challenge-number">CHALLENGE 1</div>
+          <div class="challenge-name">&#128566; Blindfold Relay + Fire Puzzle</div>
+        </div>
+        <div class="challenge-header-tags">
+          <span class="tag tag-physical">&#127939; Physical</span>
+          <span class="tag tag-puzzle">&#129513; Puzzle</span>
+          <span class="tag tag-team">&#129309; Team</span>
+        </div>
+      </div>
+      <div class="challenge-card-body">
+        <div class="challenge-meta"><span>&#127968; Backyard</span><span>&#9201; ~20 min</span><span>&#128337; 2:00 PM</span></div>
+        <div class="challenge-section"><div class="challenge-section-title">Setup</div><p><strong>9 drawstring bags</strong> (3 per tribe, color-coded) with Fire Puzzle pieces. Hidden on fence posts, tree branches, railings. <strong>1 caller per tribe</strong> (best for older guests). 5 others blindfolded.</p></div>
+        <div class="challenge-section"><div class="challenge-section-title">Rules</div><p>Callers direct blindfolded teammates by voice only. Find all 3 bags, remove blindfolds, assemble Vexzle Fire Puzzle. <strong>First tribe finished wins.</strong></p></div>
+        <div class="challenge-section"><div class="challenge-section-title">Supplies</div><ul><li>3 Vexzle Fire Puzzles (Party Pack #4)</li><li>15+ blindfolds</li><li>9 drawstring bags</li></ul></div>
+        <div class="challenge-scoring">Scoring: 1st = 3pts, 2nd = 2pts, 3rd = 1pt</div>
+        <div class="jeff-script">"For today's first challenge, you will be blindfolded. One person from your tribe will be your eyes. They will guide you through the yard to find your puzzle pieces. Once you have all the pieces, rip off those blindfolds and solve the Fire Puzzle. First tribe to finish wins reward. Survivors ready? GO!"</div>
+      </div>
+    </div>
+
+    <div class="challenge-card mental animate-on-scroll">
+      <div class="challenge-card-header">
+        <div>
+          <div class="challenge-number">CHALLENGE 2</div>
+          <div class="challenge-name">&#129504; Jessica / 5th Grade Trivia</div>
+        </div>
+        <div class="challenge-header-tags">
+          <span class="tag tag-mental">&#129504; Mental</span>
+          <span class="tag tag-team">&#129309; Team</span>
+        </div>
+      </div>
+      <div class="challenge-card-body">
+        <div class="challenge-meta"><span>&#127968; Home</span><span>&#9201; ~15 min</span><span>&#128337; 2:30 PM</span></div>
+        <div class="challenge-section"><div class="challenge-section-title">Setup</div><p><strong>3 whiteboards + markers.</strong> 15 to 20 question cards: half "How Well Do You Know Jessica?" and half 5th grade curriculum.</p></div>
+        <div class="challenge-extra"><div class="challenge-section"><div class="challenge-section-title">Sample Questions</div><ul><li>"What position did Jessica play at Sonoma State?"</li><li>"What is 7 x 8?"</li><li>"What is the capital of California?"</li><li>"Spell NECESSARY"</li></ul></div></div>
+        <div class="challenge-section"><div class="challenge-section-title">Rules</div><p>Jeff reads question. <strong>30 seconds to discuss.</strong> Reveal simultaneously. 1 point per correct answer.</p></div>
+        <div class="challenge-section"><div class="challenge-section-title">Supplies</div><ul><li>3 whiteboards + markers</li><li>Printed question cards (DIY)</li></ul></div>
+        <div class="challenge-scoring">Scoring: 1st = 3pts, 2nd = 2pts, 3rd = 1pt</div>
+        <div class="callout callout-fire" style="margin-bottom:12px;"><strong>&#9888; ACTION:</strong> Collect 10 to 15 personal questions from Stephanie at least 2 weeks before.</div>
+        <div class="jeff-script">"For four years, Jessica shaped young minds at Parkmead Elementary. Today, we find out if her family is smarter than her 5th graders. Tribes, grab your whiteboards. This is a test of knowledge, memory, and how well you really know the birthday girl."</div>
+      </div>
+    </div>
+
+    <div class="challenge-card physical animate-on-scroll">
+      <div class="challenge-card-header">
+        <div>
+          <div class="challenge-number">CHALLENGE 3</div>
+          <div class="challenge-name">&#9917; Soccer Shootout</div>
+        </div>
+        <div class="challenge-header-tags">
+          <span class="tag tag-physical">&#127939; Physical</span>
+          <span class="tag tag-team">&#129309; Team</span>
+        </div>
+      </div>
+      <div class="challenge-card-body">
+        <div class="challenge-meta"><span>&#127966; Diablo Vista Park</span><span>&#9201; ~15 min</span><span>&#128337; 3:00 PM</span></div>
+        <div class="challenge-section"><div class="challenge-section-title">Setup</div><p><strong>Mini obstacle course:</strong> 6 cones to weave, tarp to crawl under, pop-up goal. <strong>15ft adults, 10ft kids.</strong> Older guests skip obstacle. <span class="role-badge role-helper">Helper</span></p></div>
+        <div class="challenge-section"><div class="challenge-section-title">Rules</div><p>Each member runs course, takes penalty kick. <strong>Goal = 1 point.</strong> Most goals wins.</p></div>
+        <div class="challenge-section"><div class="challenge-section-title">Supplies</div><ul><li>12 cones</li><li>1 to 2 pop-up goals</li><li>2 to 3 soccer balls</li><li>1 tarp</li></ul></div>
+        <div class="challenge-scoring">Scoring: 1st = 3pts, 2nd = 2pts, 3rd = 1pt</div>
+        <div class="jeff-script">"Thirty years ago, a soccer star was born in Antioch. She dominated the fields at Deer Valley High. She played at Sonoma State. Today, we find out if the people who love her can even score a single goal. No pressure."</div>
+      </div>
+    </div>
+
+    <div class="challenge-card comedy animate-on-scroll">
+      <div class="challenge-card-header">
+        <div>
+          <div class="challenge-number">CHALLENGE 4</div>
+          <div class="challenge-name">&#129398; Frozen T-Shirt (SURPRISE)</div>
+        </div>
+        <div class="challenge-header-tags">
+          <span class="tag tag-physical">&#127939; Physical</span>
+          <span class="tag tag-comedy">&#128514; Comedy</span>
+          <span class="tag tag-team">&#129309; Team</span>
+        </div>
+      </div>
+      <div class="challenge-card-body">
+        <div class="challenge-meta"><span>&#127968; Backyard</span><span>&#9201; ~5 to 10 min</span><span>&#128337; 4:30 PM</span></div>
+        <div class="challenge-section"><div class="challenge-section-title">Setup (April 29)</div><p><strong>3 days before:</strong> Soak 3 T-shirts, fold into rectangles, parchment paper between each, freeze. Pull into cooler morning of.</p></div>
+        <div class="challenge-section"><div class="challenge-section-title">Rules</div><p>SURPRISE reveal. Each tribe unfolds a frozen shirt and puts it on one teammate. <strong>No tools.</strong> Hands, body heat, smashing on ground allowed.</p></div>
+        <div class="challenge-section"><div class="challenge-section-title">Supplies</div><ul><li>3 plain T-shirts</li><li>Parchment paper</li><li>Freezer space</li></ul></div>
+        <div class="challenge-scoring">Scoring: 1st = 3pts, 2nd = 2pts, 3rd = 1pt</div>
+        <div class="jeff-script">"For this next challenge, I need each tribe to send someone to grab what's behind me. [Reveal frozen shirts] These shirts have been frozen solid for three days. Your tribe must unfold it and put it on one of your members. No tools. No hot water. Just your bare hands. Survivors ready? GO!"</div>
+      </div>
+    </div>
+
+    <div class="challenge-card physical animate-on-scroll">
+      <div class="challenge-card-header">
+        <div>
+          <div class="challenge-number">CHALLENGE 5</div>
+          <div class="challenge-name">&#128289; Word Scramble Relay</div>
+        </div>
+        <div class="challenge-header-tags">
+          <span class="tag tag-physical">&#127939; Physical</span>
+          <span class="tag tag-mental">&#129504; Mental</span>
+          <span class="tag tag-team">&#129309; Team</span>
+        </div>
+      </div>
+      <div class="challenge-card-body">
+        <div class="challenge-meta"><span>&#127968; Backyard</span><span>&#9201; ~15 min</span><span>&#128337; 4:45 PM</span></div>
+        <div class="challenge-section"><div class="challenge-section-title">Setup</div><p><strong>3 stations ~30 feet from start.</strong> Scrambled letter tiles. Each member runs, unscrambles one word, tags next. Final person assembles: <strong>HAPPY 30TH JESSICA</strong>.</p></div>
+        <div class="challenge-extra"><div class="challenge-section"><div class="challenge-section-title">Word List</div><ul><li>RCOESC = SOCCER</li><li>HCEETRA = TEACHER</li><li>VSIUORRV = SURVIVOR</li><li>NTOHAIC = ANTIOCH</li><li>MAOOSN = SONOMA</li><li>BIADOL = DIABLO</li></ul></div></div>
+        <div class="challenge-section"><div class="challenge-section-title">Supplies</div><ul><li>Cardstock letter tiles (DIY)</li><li>3 tables</li><li>Tape for wind</li></ul></div>
+        <div class="challenge-scoring">Scoring: 1st = 3pts, 2nd = 2pts, 3rd = 1pt</div>
+        <div class="jeff-script">"This challenge will test your body AND your brain. One at a time, sprint to your station, unscramble the word, and race back. But here's the twist: your last player must take all the words and unscramble the final phrase. The answer? It's something very special. Survivors ready? GO!"</div>
+      </div>
+    </div>
+
+    <div class="challenge-card social animate-on-scroll">
+      <div class="challenge-card-header">
+        <div>
+          <div class="challenge-number">CHALLENGE 6</div>
+          <div class="challenge-name">&#127912; Touchy Subjects with Balloons</div>
+        </div>
+        <div class="challenge-header-tags">
+          <span class="tag tag-social">&#128483; Social</span>
+          <span class="tag tag-individual">&#128081; Individual</span>
+        </div>
+      </div>
+      <div class="challenge-card-body">
+        <div class="challenge-meta"><span>&#127968; Home</span><span>&#9201; ~15 min</span><span>&#128337; 5:15 PM</span></div>
+        <div class="challenge-section"><div class="challenge-section-title">Setup</div><p><strong>18 foam boards</strong> with 2 balloons each + player name. <span class="role-badge role-helper">Helper</span> inflates 36 balloons morning of (20 to 30 min).</p></div>
+        <div class="challenge-section"><div class="challenge-section-title">Rules</div><p>Jeff reads prompt. Everyone writes who they think the majority picks. <strong>Correct = pop someone's balloon. 2 pops = out.</strong> Last standing wins.</p></div>
+        <div class="challenge-extra"><div class="challenge-section"><div class="challenge-section-title">Sample Prompts</div><ul><li>"Who is most likely to win a real season of Survivor?"</li><li>"Who would be voted out first?"</li><li>"Who is the biggest drama queen?"</li><li>"Who would you trust to babysit your kids?"</li><li>"Who is secretly the most competitive?"</li><li>"Most likely to cry at Final Tribal?"</li><li>"Who would betray their alliance first?"</li><li>"Who is the funniest person here?"</li></ul></div></div>
+        <div class="challenge-section"><div class="challenge-section-title">Supplies</div><ul><li>36 balloons</li><li>18 foam boards</li><li>Thumbtack for popping</li><li>Dry erase boards (reuse from Trivia)</li></ul></div>
+        <div class="challenge-scoring">Scoring: Individual winner = 5pts, runner-up = 3pts</div>
+        <div class="jeff-script">"This challenge is called Touchy Subjects. I'm going to ask you what you REALLY think about each other. If you guess what the majority says, you earn the right to pop someone's balloon. Two pops and you're out. Last one standing wins. Let's see how well you know this group... and how ruthless you're willing to be."</div>
+      </div>
+    </div>
+
+    <div class="challenge-card puzzle animate-on-scroll">
+      <div class="challenge-card-header">
+        <div>
+          <div class="challenge-number">CHALLENGE 7</div>
+          <div class="challenge-name">&#129513; Final Immunity: Tree Puzzle</div>
+        </div>
+        <div class="challenge-header-tags">
+          <span class="tag tag-puzzle">&#129513; Puzzle</span>
+          <span class="tag tag-team">&#129309; Team Reps</span>
+        </div>
+      </div>
+      <div class="challenge-card-body">
+        <div class="challenge-meta"><span>&#127968; Backyard / Garage</span><span>&#9201; ~15 min</span><span>&#128337; 7:00 PM</span></div>
+        <div class="challenge-section"><div class="challenge-section-title">Setup</div><p><strong>3 Vexzle Tree Puzzles</strong> on separate tables. Pieces loose in bags.</p></div>
+        <div class="challenge-section"><div class="challenge-section-title">Rules</div><p>Each tribe picks <strong>2 representatives.</strong> All 3 pairs race simultaneously. First pair to complete wins Final Immunity.</p></div>
+        <div class="challenge-section"><div class="challenge-section-title">Supplies</div><ul><li>3 Vexzle Tree Puzzles (Party Pack #3)</li><li>3 tables</li></ul></div>
+        <div class="challenge-scoring">Scoring: Winning tribe = 5pts per member</div>
+        <div class="jeff-script">"This is it. The final immunity challenge. Each tribe will select two people to represent them. Three puzzles. Three pairs. One winner. The pair that finishes first guarantees their tribe a spot in Survivor history. Choose wisely. This is for IMMUNITY."</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================================
+     AUCTION
+     ================================================================ -->
+<section class="section" id="auction">
+  <div class="container">
+    <span class="section-label">&#128176; 3:30 PM</span>
+    <h2 class="section-title">The Survivor Auction</h2>
+    <p class="section-subtitle">$500 Survivor Bucks per player. No sharing money. Bidding in $20 increments.</p>
+    <div class="table-wrap animate-on-scroll"><table class="styled-table"><thead><tr><th>#</th><th>Item</th><th>Status</th><th>Notes</th></tr></thead><tbody>
+      <tr><td>1</td><td>&#127790; Plate of street tacos (4 tacos)</td><td><span class="auction-badge badge-revealed">Revealed</span></td><td>Crowd pleaser opener.</td></tr>
+      <tr><td>2</td><td>&#127851; Chocolate lava cake</td><td><span class="auction-badge badge-covered">Covered</span></td><td>NUT-FREE.</td></tr>
+      <tr><td>3</td><td>&#129371; Spam on cracker + warm water</td><td><span class="auction-badge badge-trap">Trap</span></td><td>Must eat.</td></tr>
+      <tr><td>4</td><td>&#129472; Nachos supreme</td><td><span class="auction-badge badge-revealed">Revealed</span></td><td>NUT-FREE.</td></tr>
+      <tr><td>5</td><td>&#128031; Sardines + pickle juice shot</td><td><span class="auction-badge badge-trap">Trap</span></td><td>Comedy peak.</td></tr>
+      <tr><td>6</td><td>&#129472; Charcuterie plate (buyer + 1 friend)</td><td><span class="auction-badge badge-covered">Covered</span></td><td>Premium +1.</td></tr>
+      <tr><td>7</td><td>&#9889; ADVANTAGE: 30s head start, Final Puzzle</td><td><span class="auction-badge badge-advantage">Advantage</span></td><td>Aggressive bidding.</td></tr>
+      <tr><td>8</td><td>&#128118; Baby food jar ("Island Delicacy")</td><td><span class="auction-badge badge-trap">Trap</span></td><td>Must eat all.</td></tr>
+      <tr><td>9</td><td>&#128140; LETTERS FROM HOME</td><td><span class="auction-badge badge-emotional">Emotional</span></td><td><strong>THE emotional peak.</strong></td></tr>
+      <tr><td>10</td><td>&#127846; Ice cream sundae (buyer + 2)</td><td><span class="auction-badge badge-covered">Covered</span></td><td>NUT-FREE.</td></tr>
+      <tr><td>11</td><td>&#127871; Jessica's favorite snack</td><td><span class="auction-badge badge-covered">Covered</span></td><td>Intel from Stephanie.</td></tr>
+      <tr><td>12</td><td>&#127850; Cookies + cold milk (everyone)</td><td><span class="auction-badge badge-revealed">Revealed</span></td><td>End on high.</td></tr>
+    </tbody></table></div>
+    <div class="divider"></div>
+    <h3 style="font-family:var(--font-head);font-size:22px;letter-spacing:2px;color:var(--gold);margin-bottom:20px;">&#128140; Letters from Home Script</h3>
+    <div class="jeff-script-full animate-on-scroll" data-label="PRE-BID"><span class="script-time">~4:05 PM | Auction Item #9</span>"This next item is not food. There are no traps here. No Spam. No sardines. What I have in this envelope are words. Words written by the people in this yard about the woman we're all here celebrating today. Words she may have never heard out loud before. Bidding starts at $20."</div>
+    <div class="jeff-script-full animate-on-scroll" data-label="POST-BID">"Jessica. These are yours. From every single person who loves you. Happy birthday."</div>
+    <div class="callout callout-success"><strong>&#128221; ACTION:</strong> Slip paper + pens to every guest during arrival (12:00 to 1:30 PM). Collect and seal in envelope before 3:30 PM.</div>
+    <div class="divider"></div>
+    <h3 style="font-family:var(--font-head);font-size:22px;letter-spacing:2px;color:var(--gold);margin-bottom:20px;">&#127860; Local Sourcing Guide</h3>
+    <p style="font-size:16px;color:var(--text-secondary);margin-bottom:16px;">Where to get auction food items from nearby restaurants.</p>
+    <div class="table-wrap animate-on-scroll"><table class="styled-table"><thead><tr><th>Item</th><th>Suggested Source</th><th>Notes</th></tr></thead><tbody>
+      <tr><td>Street Tacos</td><td>Cocina Mia or Taqueria El Farolito (Walnut Creek)</td><td>Order ahead, pickup day of</td></tr>
+      <tr><td>Chocolate Lava Cake</td><td>Nothing Bundt Cakes or a local bakery</td><td>Confirm nut free</td></tr>
+      <tr><td>Nachos Supreme</td><td>Any local Mexican restaurant or DIY</td><td>Easy to make at home</td></tr>
+      <tr><td>Charcuterie Plate</td><td>Whole Foods or Lunardi's Market (Danville)</td><td>Pre-made boards available</td></tr>
+      <tr><td>Ice Cream Sundae</td><td>Lottie's Creamery (Walnut Creek) or DIY</td><td>Keep in cooler</td></tr>
+      <tr><td>Cookies + Milk</td><td>Crumbl Cookies (San Ramon) or Safeway</td><td>Verify nut free</td></tr>
+      <tr><td>Birthday Cake</td><td>Susie Cakes (Walnut Creek) or local bakery</td><td>Survivor theme, 30 candles</td></tr>
+    </tbody></table></div>
+    <div class="callout callout-gold" style="margin-top:16px;"><strong>&#9998; Note:</strong> Diablo Vista Park also has a volleyball court available for use.</div>
+  </div>
+</section>
+
+<!-- ================================================================
+     SCRIPTS
+     ================================================================ -->
+<section class="section" id="scripts">
+  <div class="container">
+    <span class="section-label">&#127916; The Voice of Survivor</span>
+    <h2 class="section-title">Jeff Probst Cheat Sheet</h2>
+
+    <div class="pocket-card animate-on-scroll">
+      <div class="pocket-card-title">&#127908; Jeff's Pocket Card</div>
+      <div class="pocket-card-sub">Print this. Fold it. Put it in your shirt pocket.</div>
+      <table><thead><tr><th>Moment</th><th>Line</th></tr></thead><tbody>
+        <tr><td>Arrival</td><td>"Come on in!"</td></tr>
+        <tr><td>Before reward</td><td>"Wanna know what you're playing for?"</td></tr>
+        <tr><td>Start</td><td>"Survivors ready? GO!"</td></tr>
+        <tr><td>After win</td><td>"[TRIBE] wins!"</td></tr>
+        <tr><td>Tribal</td><td>"Fire represents your life in this game."</td></tr>
+        <tr><td>Vote time</td><td>"It is time to vote."</td></tr>
+        <tr><td>Tally</td><td>"I'll go tally the votes."</td></tr>
+        <tr><td>Snuff</td><td>"The tribe has spoken."</td></tr>
+      </tbody></table>
+    </div>
+
+    <h3 style="font-family:var(--font-head);font-size:22px;letter-spacing:2px;color:var(--text-primary);margin-bottom:20px;">&#127916; Custom Scripts</h3>
+
+    <div class="jeff-script-full animate-on-scroll" data-label="OPENING CEREMONY"><span class="script-time">1:45 PM | Backyard</span>"18 people. 7 challenges. 1 Sole Survivor. Well, actually, it's more like 7 hours. 18 people. And one incredible woman turning 30. Today is not just a birthday party. Today is a battle. Welcome to SURVIVOR: Jessica's Dirty 30. Outwit. Outplay. Outlast."</div>
+
+    <div class="jeff-script-full animate-on-scroll" data-label="BEFORE SOCCER SHOOTOUT"><span class="script-time">3:00 PM | Diablo Vista Park</span>"For four years, Jessica dominated on the soccer field at Sonoma State. She was a force. She was unstoppable. Today, we find out if the people who love her can even score a single goal. No pressure."</div>
+
+    <div class="jeff-script-full animate-on-scroll" data-label="PREVIOUSLY ON... SURVIVOR"><span class="script-time">5:40 PM | Before the Merge</span>"Previously on Survivor: Jessica's Dirty 30. Three tribes were formed. Blindfolded players stumbled through the yard searching for puzzle pieces. Jessica's family was quizzed on how well they really know her. And at Diablo Vista Park, the soccer star's legacy was put to the test. Then, at the Survivor Auction, emotions ran high when letters from home hit the table. Now, the game changes. Three tribes become one. And the battle for individual immunity begins."</div>
+
+    <div class="jeff-script-full animate-on-scroll" data-label="THE MERGE REVEAL" style="border-left-color:var(--merge-teal);background:rgba(26,158,143,0.06);"><span class="script-time">5:45 PM | Backyard | EMOTIONAL PEAK</span>"Drop your buffs. You came in today as three tribes. The Yoc. Menalua. Diabla. Here's something the producers have been keeping from you all day. Those aren't random Polynesian names. The Yoc is Antioch, where Jessica grew up. Menalua is Menlo Park, where her husband's family is from. Diabla is Mt. Diablo, the mountain that watches over Danville, the place she now calls home. You've been playing on her turf the whole time. Welcome to the merge. Welcome to tribe... The Ville."</div>
+
+    <div class="jeff-script-full animate-on-scroll" data-label="BEFORE FINAL TRIBAL COUNCIL"><span class="script-time">7:30 PM | Garage</span>"You have played this game all day. You've been blindfolded. You've smashed frozen shirts with your bare hands. You've answered 5th grade trivia that most of you got wrong. You've bid on Spam with fake money. And now, you sit here, together, one tribe, one family, to decide who among you has truly outwitted, outplayed, and outlasted everyone else."</div>
+
+    <div class="jeff-script-full animate-on-scroll" data-label="BIRTHDAY CAKE CLOSER" style="border-left-color:var(--purple);background:rgba(167,139,250,0.06);"><span class="script-time">8:00 PM | Home</span>"18 people started today. One person outlasted them all. But today was never just about the game. Today was about celebrating the most incredible person any of us know. The athlete who played at Sonoma State. The teacher who shapes young minds every day in Walnut Creek. The daughter, the sister, the wife, the friend. She grew up in The Yoc and she has made everyone in this yard endlessly proud. Jessica... the tribe has spoken. And it speaks with one voice: Happy. 30th. Birthday."</div>
+  </div>
+</section>
+
+<!-- ================================================================
+     SCORING
+     ================================================================ -->
+<section class="section" id="scoring">
+  <div class="container">
+    <span class="section-label">&#128202; Points</span>
+    <h2 class="section-title">Scoring System</h2>
+    <p class="section-subtitle">Scoring is for tribe bragging rights. The Final Tribal vote (not points) determines Sole Survivor.</p>
+    <div class="overview-grid animate-on-scroll" style="margin-bottom:32px;">
+      <div class="overview-card"><div class="overview-card-icon">&#129351;</div><div class="overview-card-label">Team (Pre-Merge)</div><div class="overview-card-value" style="font-size:16px;">1st = 3 pts/member<br>2nd = 2 pts/member<br>3rd = 1 pt/member</div></div>
+      <div class="overview-card"><div class="overview-card-icon">&#128081;</div><div class="overview-card-label">Individual (Post-Merge)</div><div class="overview-card-value" style="font-size:16px;">Winner = 5 pts<br>Runner-up = 3 pts</div></div>
+      <div class="overview-card"><div class="overview-card-icon">&#127942;</div><div class="overview-card-label">Final Result</div><div class="overview-card-value" style="font-size:16px;">Final Tribal vote decides Sole Survivor.</div></div>
+    </div>
+    <h3 style="font-family:var(--font-head);font-size:20px;letter-spacing:2px;color:var(--text-primary);margin-bottom:16px;">&#128203; Scoreboard</h3>
+    <div class="scoreboard animate-on-scroll">
+      <div class="scoreboard-header"><span>Tribe</span><span>CH1</span><span>CH2</span><span>CH3</span><span>CH4</span><span>CH5</span><span>CH6</span><span>CH7</span><span>Total</span></div>
+      <div class="scoreboard-row pink"><span>THE YOC</span><span>___</span><span>___</span><span>___</span><span>___</span><span>___</span><span>___</span><span>___</span><span>___</span></div>
+      <div class="scoreboard-row blue"><span>MENALUA</span><span>___</span><span>___</span><span>___</span><span>___</span><span>___</span><span>___</span><span>___</span><span>___</span></div>
+      <div class="scoreboard-row yellow"><span>DIABLA</span><span>___</span><span>___</span><span>___</span><span>___</span><span>___</span><span>___</span><span>___</span><span>___</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     TREE MAIL
+     ================================================================ -->
+<section class="section" id="treemail">
+  <div class="container">
+    <span class="section-label">&#128220; Read Between the Lines</span>
+    <h2 class="section-title">Tree Mail Poems</h2>
+    <p class="section-subtitle">Print on parchment, roll into scrolls, deliver before each challenge.</p>
+    <div class="tree-mail-card animate-on-scroll"><div class="tree-mail-label">&#127796; #1: Blindfold Relay (1:30 PM)</div><div class="tree-mail-poem">Trust is earned but sight is lost,<br>Your caller's voice will bear the cost.<br>Find the bags that hold the flame,<br>And piece together Survivor's name.</div></div>
+    <div class="tree-mail-card animate-on-scroll"><div class="tree-mail-label">&#127796; #2: Trivia (~2:20 PM)</div><div class="tree-mail-poem">From math class to the soccer field,<br>The answers lie within.<br>But only the smartest tribe<br>Will claim this crucial win.</div></div>
+    <div class="tree-mail-card animate-on-scroll"><div class="tree-mail-label">&#127796; #3: Soccer Shootout (~2:50 PM)</div><div class="tree-mail-poem">She scored her goals from Antioch to Sonoma's grassy plain,<br>Now it's your turn to prove yourself and stake your family's claim.<br>Run the course, dodge the cones, then take your shot with pride,<br>The field awaits. Lace up your kicks. Let the Dirty 30 decide.</div></div>
+    <div class="tree-mail-card animate-on-scroll"><div class="tree-mail-label">&#127796; #4: Frozen T-Shirt (~4:20 PM)</div><div class="tree-mail-poem">What's frozen solid cannot bend,<br>But teamwork finds a way.<br>No tools, no tricks, just grit and warmth,<br>Will win the shirt today.</div></div>
+    <div class="tree-mail-card animate-on-scroll"><div class="tree-mail-label">&#127796; #5: Word Scramble (~4:35 PM)</div><div class="tree-mail-poem">The letters hold a message true,<br>Unscramble them with speed.<br>But only those who race AND think<br>Will get the phrase they need.</div></div>
+    <div class="tree-mail-card animate-on-scroll"><div class="tree-mail-label">&#127796; #6: Touchy Subjects (~5:05 PM)</div><div class="tree-mail-poem">It's time to speak the truth today,<br>No hiding and no lying.<br>Vote with the crowd or stand alone,<br>But watch your balloons... they're dying.</div></div>
+    <div class="tree-mail-card animate-on-scroll"><div class="tree-mail-label">&#127796; #7: Final Immunity (~6:45 PM)</div><div class="tree-mail-poem">This is it. The final fight. The last chance to survive.<br>Piece by piece, branch by branch, only the fastest stay alive.<br>Thirty years have led to this. One puzzle. One last stand.<br>Assemble the tree of life and hold immunity in your hand.</div></div>
+  </div>
+</section>
+
+<!-- ================================================================
+     IDOLS
+     ================================================================ -->
+<section class="section" id="idols">
+  <div class="container">
+    <span class="section-label">&#128511; Hidden in Plain Sight</span>
+    <h2 class="section-title">Hidden Immunity Idols</h2>
+    <p class="section-subtitle">Three idols hidden before guests arrive, one per tribe. All hidden inside the house. Power is symbolic. Played at Final Tribal for bragging rights.</p>
+    <div class="idol-grid animate-on-scroll">
+      <div class="idol-card"><div class="challenge-number">&#128511; Idol #1 (The Yoc Idol)</div><div class="challenge-name" style="font-size:20px;margin-bottom:12px;color:var(--text-primary);">Hidden Under the Kitchen Island</div><p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px;">Taped underneath the kitchen island countertop. Accessible during any indoor phase.</p><div class="challenge-section-title">Tree Mail Clue</div><p style="font-size:14px;color:var(--text-secondary);font-style:italic;">"Where snacks are served and plates are passed,<br>An idol waits beneath the mass.<br>Look not above where food is found,<br>But underneath, where hands reach down."</p></div>
+      <div class="idol-card"><div class="challenge-number">&#128511; Idol #2 (Menalua Idol)</div><div class="challenge-name" style="font-size:20px;margin-bottom:12px;color:var(--text-primary);">Hidden Behind the Living Room Couch Cushions</div><p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px;">Tucked behind couch cushions in the living room. Accessible during trivia and social challenges.</p><div class="challenge-section-title">Tree Mail Clue</div><p style="font-size:14px;color:var(--text-secondary);font-style:italic;">"You sit and rest, you laugh and play,<br>But comfort hides a prize today.<br>Between the cushions, soft and deep,<br>An idol waits for those who seek."</p></div>
+      <div class="idol-card"><div class="challenge-number">&#128511; Idol #3 (Diabla Idol)</div><div class="challenge-name" style="font-size:20px;margin-bottom:12px;color:var(--text-primary);">Hidden Inside the Garage</div><p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px;">Near the Tribal Council setup area in the garage. Accessible once garage is opened for prep.</p><div class="challenge-section-title">Tree Mail Clue</div><p style="font-size:14px;color:var(--text-secondary);font-style:italic;">"Where fire flickers and torches stand,<br>Where tribes will meet for their final hand,<br>Before the council lights the way,<br>An idol hides, waiting for its day."</p></div>
+    </div>
+    <div class="callout callout-gold" style="margin-top:20px;"><strong>&#128270; Morning of:</strong> Write idol locations on a note for Jeff only. Hide all 3 idols during 11:00 AM walkthrough in pre-planned house locations.</div>
+  </div>
+</section>
+
+<!-- ================================================================
+     CONFESSIONAL
+     ================================================================ -->
+<section class="section" id="confessional">
+  <div class="container">
+    <span class="section-label">&#127968; Camera Ready</span>
+    <h2 class="section-title">Confessional Booth</h2>
+    <p class="section-subtitle">Phone on tripod, chair, CONFESSIONAL sign. Post these prompts nearby.</p>
+    <div class="overview-grid animate-on-scroll">
+      <div class="overview-card"><div class="overview-card-value" style="font-size:14px;">&#127909; "What's your strategy for today?"</div></div>
+      <div class="overview-card"><div class="overview-card-value" style="font-size:14px;">&#128064; "Who is the biggest threat?"</div></div>
+      <div class="overview-card"><div class="overview-card-value" style="font-size:14px;">&#129300; "Who do you trust the least?"</div></div>
+      <div class="overview-card"><div class="overview-card-value" style="font-size:14px;">&#128149; "What does Jessica mean to you?"</div></div>
+      <div class="overview-card"><div class="overview-card-value" style="font-size:14px;">&#129309; "Who would you ally with?"</div></div>
+      <div class="overview-card"><div class="overview-card-value" style="font-size:14px;">&#127775; "Best moment so far?"</div></div>
+      <div class="overview-card"><div class="overview-card-value" style="font-size:14px;">&#128170; "Can you win Sole Survivor?"</div></div>
+    </div>
+    <div class="callout callout-gold" style="margin-top:24px;"><strong>&#128248; Voting Confessional (Final Tribal):</strong> "Hold up your vote to the camera. Say who you're voting for and one reason why."</div>
+  </div>
+</section>
+
+<!-- Shopping/Budget section removed for review copy -->
+
+<!-- ================================================================
+     SETUP
+     ================================================================ -->
+<section class="section" id="setup">
+  <div class="container">
+    <span class="section-label">&#128295; May 2nd</span>
+    <h2 class="section-title">Day-Of Setup</h2>
+    <div class="challenge-card physical animate-on-scroll">
+      <div class="challenge-card-header">
+        <div>
+          <div class="challenge-number">&#9200; 8:00 AM</div>
+          <div class="challenge-name">Venue Dressing</div>
+        </div>
+      </div>
+      <div class="challenge-card-body">
+        <ul class="setup-checklist"><li><div class="check-box"></div> &#127987; Tribal Council in garage: LED torches, semicircle chairs, urn, parchment</li><li><div class="check-box"></div> &#127796; Tropical decorations around backyard</li><li><div class="check-box"></div> &#128220; Tree Mail station at front of house</li><li><div class="check-box"></div> &#127909; Confessional booth: phone on tripod, chair, sign</li><li><div class="check-box"></div> &#128248; Photo backdrop area</li><li><div class="check-box"></div> &#128203; Scoreboard poster in backyard</li></ul>
+      </div>
+    </div>
+    <div class="challenge-card mental animate-on-scroll">
+      <div class="challenge-card-header">
+        <div>
+          <div class="challenge-number">&#9200; 9:00 AM</div>
+          <div class="challenge-name">Challenge Prep</div>
+        </div>
+      </div>
+      <div class="challenge-card-body">
+        <ul class="setup-checklist"><li><div class="check-box"></div> &#128566; CH1: Hide 9 color-coded puzzle bags</li><li><div class="check-box"></div> &#129504; CH2: Print trivia cards, set out whiteboards</li><li><div class="check-box"></div> &#9917; CH3: Load soccer gear in car</li><li><div class="check-box"></div> &#128289; CH5: Set up Word Scramble stations</li><li><div class="check-box"></div> &#127912; CH6: Inflate 36 balloons, attach to 18 boards (20-30 min)</li><li><div class="check-box"></div> &#129513; CH7: Set out Tree Puzzle stations</li></ul>
+      </div>
+    </div>
+    <div class="challenge-card social animate-on-scroll">
+      <div class="challenge-card-header">
+        <div>
+          <div class="challenge-number">&#9200; 10:00 AM</div>
+          <div class="challenge-name">Food + Logistics</div>
+        </div>
+      </div>
+      <div class="challenge-card-body">
+        <ul class="setup-checklist"><li><div class="check-box"></div> &#127860; Snack station setup</li><li><div class="check-box"></div> &#128230; Plate auction items. Cover mystery items. Label for Jeff only.</li><li><div class="check-box"></div> &#128222; Confirm caterer delivery (~5:30 PM). Verify nut-free.</li><li><div class="check-box"></div> &#128181; Prepare $500 Survivor Bucks bundles (18)</li><li><div class="check-box"></div> &#129398; Pull frozen T-shirts into cooler</li><li><div class="check-box"></div> &#128140; Set out Letters from Home supplies</li></ul>
+      </div>
+    </div>
+    <div class="challenge-card puzzle animate-on-scroll">
+      <div class="challenge-card-header">
+        <div>
+          <div class="challenge-number">&#9200; 11:00 AM</div>
+          <div class="challenge-name">Final Walkthrough</div>
+        </div>
+      </div>
+      <div class="challenge-card-body">
+        <ul class="setup-checklist"><li><div class="check-box"></div> &#127925; Test speaker + music</li><li><div class="check-box"></div> &#128511; Hide 3 immunity idols in pre-planned house locations</li><li><div class="check-box"></div> &#128221; Write idol locations on note for Jeff</li><li><div class="check-box"></div> &#128694; Walk Blindfold Relay course</li><li><div class="check-box"></div> &#128220; Confirm Tree Mail scrolls placed</li><li><div class="check-box"></div> &#128203; Confirm tribe assignments finalized</li></ul>
+      </div>
+    </div>
+    <div class="challenge-card comedy animate-on-scroll">
+      <div class="challenge-card-header">
+        <div>
+          <div class="challenge-number">&#9200; 11:30 AM</div>
+          <div class="challenge-name">Become Jeff Probst</div>
+        </div>
+      </div>
+      <div class="challenge-card-body">
+        <ul class="setup-checklist"><li><div class="check-box"></div> &#128084; Costume: blue button-down, khaki shorts, boots, cap</li><li><div class="check-box"></div> &#128196; Print Jeff Cheat Sheet, put in shirt pocket</li><li><div class="check-box"></div> &#127908; Practice key lines</li><li><div class="check-box"></div> &#128588; Deep breath</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     MAP (Parchment Tribal Map)
+     ================================================================ -->
+<section class="section" id="map">
+  <div class="container">
+    <span class="section-label">&#128506; The Battlefield</span>
+    <h2 class="section-title">The Tribal Map</h2>
+    <p class="section-subtitle">Your guide from Tribal Camp to The Outpost and back.</p>
+    <div class="tribal-map-container animate-on-scroll">
+      <svg viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <!-- Background -->
+        <rect width="900" height="540" fill="none"/>
+        <!-- Title Cartouche -->
+        <rect x="320" y="8" width="260" height="36" rx="6" fill="#8B6B4A" opacity="0.3"/>
+        <text x="450" y="32" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="20" fill="#3D2B1F" letter-spacing="4">THE TRIBAL MAP</text>
+        <!-- Compass Rose -->
+        <g transform="translate(830,60)">
+          <circle r="20" fill="none" stroke="#8B6B4A" stroke-width="1.5"/>
+          <line x1="0" y1="-18" x2="0" y2="-8" stroke="#3D2B1F" stroke-width="2"/>
+          <line x1="0" y1="8" x2="0" y2="18" stroke="#8B6B4A" stroke-width="1.5"/>
+          <line x1="-18" y1="0" x2="-8" y2="0" stroke="#8B6B4A" stroke-width="1.5"/>
+          <line x1="8" y1="0" x2="18" y2="0" stroke="#8B6B4A" stroke-width="1.5"/>
+          <text x="0" y="-24" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="12" fill="#3D2B1F">N</text>
+        </g>
+        <!-- Mt Diablo silhouette -->
+        <path d="M0 90 Q150 85 250 75 Q350 55 400 40 Q430 30 450 25 Q470 30 500 40 Q550 55 650 75 Q750 85 900 90" fill="none" stroke="#8B6B4A" stroke-width="1" opacity="0.3"/>
+        <!-- TRIBAL CAMP (House) -->
+        <rect x="40" y="110" width="350" height="300" rx="8" fill="#E8D5B8" stroke="#8B6B4A" stroke-width="2"/>
+        <text x="215" y="138" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="16" fill="#3D2B1F" letter-spacing="3">TRIBAL CAMP</text>
+        <text x="215" y="154" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#6B4F3A">315 Windchime Dr</text>
+        <!-- Rooms -->
+        <rect x="55" y="168" width="150" height="55" rx="4" fill="#DCC8A4" stroke="#8B6B4A" stroke-width="1"/>
+        <text x="130" y="190" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#3D2B1F">Front Yard</text>
+        <text x="130" y="202" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#6B4F3A">Arrival / Tree Mail</text>
+        <rect x="220" y="168" width="155" height="55" rx="4" fill="#DCC8A4" stroke="#8B6B4A" stroke-width="1"/>
+        <text x="298" y="190" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#3D2B1F">Kitchen</text>
+        <text x="298" y="202" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#6B4F3A">Snacks / Auction / Yoc Idol</text>
+        <text x="298" y="215" text-anchor="middle" font-size="12" fill="#CC4A00">&#10060;</text>
+        <rect x="55" y="234" width="105" height="55" rx="4" fill="#DCC8A4" stroke="#8B6B4A" stroke-width="1"/>
+        <text x="108" y="256" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#3D2B1F">Living Room</text>
+        <text x="108" y="268" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#6B4F3A">Trivia / Menalua Idol</text>
+        <text x="108" y="281" text-anchor="middle" font-size="12" fill="#CC4A00">&#10060;</text>
+        <rect x="170" y="234" width="100" height="55" rx="4" fill="#DCC8A4" stroke="#8B6B4A" stroke-width="1"/>
+        <text x="220" y="256" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#3D2B1F">Quiet Room</text>
+        <text x="220" y="268" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#6B4F3A">Confessional</text>
+        <rect x="280" y="234" width="95" height="55" rx="4" fill="#DCC8A4" stroke="#A83E18" stroke-width="1.5"/>
+        <text x="328" y="252" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#A83E18">Garage</text>
+        <text x="328" y="264" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#6B4F3A">Tribal Council / Diabla Idol</text>
+        <text x="328" y="275" text-anchor="middle" font-size="10">&#128293;</text>
+        <text x="350" y="275" text-anchor="middle" font-size="10" fill="#CC4A00">&#10060;</text>
+        <rect x="55" y="300" width="320" height="95" rx="4" fill="#DCC8A4" stroke="#CC4A00" stroke-width="1.5"/>
+        <text x="215" y="330" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#CC4A00">Backyard: Challenge Arena</text>
+        <text x="215" y="346" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#6B4F3A">CH1: Blindfold Relay | CH4: Frozen T-Shirt</text>
+        <text x="215" y="358" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#6B4F3A">CH5: Word Scramble | CH7: Final Immunity</text>
+        <text x="215" y="375" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#8B6B4A">Scoreboard | Photo Backdrop</text>
+        <!-- THE TRAIL -->
+        <path d="M390 300 Q420 300 440 310 Q470 330 500 380 Q520 420 560 440 Q600 450 650 440" fill="none" stroke="#3D2B1F" stroke-width="2" stroke-dasharray="8,6"/>
+        <text x="470" y="365" font-family="'Bebas Neue',sans-serif" font-size="12" fill="#3D2B1F" transform="rotate(-30,470,365)">THE TRAIL</text>
+        <text x="510" y="420" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#6B4F3A">~5 min walk &#128694;</text>
+        <!-- Crosswalk -->
+        <rect x="535" y="430" width="30" height="4" fill="#3D2B1F" rx="1"/>
+        <rect x="535" y="437" width="30" height="4" fill="#3D2B1F" rx="1"/>
+        <rect x="535" y="444" width="30" height="4" fill="#3D2B1F" rx="1"/>
+        <text x="550" y="465" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="7" fill="#8B4513">Crow Canyon Rd</text>
+        <!-- Arrow markers -->
+        <polygon points="445,320 450,315 455,320" fill="#3D2B1F"/>
+        <polygon points="595,445 600,440 605,445" fill="#3D2B1F"/>
+        <!-- THE OUTPOST (Park) -->
+        <rect x="560" y="110" width="310" height="300" rx="8" fill="#D4DEC0" stroke="#2D5016" stroke-width="2"/>
+        <text x="715" y="138" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="16" fill="#2D5016" letter-spacing="3">THE OUTPOST</text>
+        <text x="715" y="154" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#4A7A28">Diablo Vista Park</text>
+        <!-- Soccer field -->
+        <rect x="600" y="170" width="230" height="90" rx="4" fill="#B8D4A0" stroke="#2D5016" stroke-width="1"/>
+        <circle cx="715" cy="215" r="18" fill="none" stroke="#2D5016" stroke-width="1"/>
+        <text x="715" y="200" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#2D5016">CH3: Soccer Shootout</text>
+        <text x="715" y="248" text-anchor="middle" font-size="14">&#9917;</text>
+        <!-- Volleyball Court -->
+        <rect x="600" y="275" width="80" height="50" rx="4" fill="#C8D8A8" stroke="#2D5016" stroke-width="1"/>
+        <line x1="640" y1="275" x2="640" y2="325" stroke="#2D5016" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="640" y="345" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#2D5016">Volleyball Court</text>
+        <text x="640" y="356" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="7" fill="#4A7A28">(Available)</text>
+        <!-- Snake sculpture -->
+        <text x="710" y="305" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#8B4513">Snake Mosaic</text>
+        <text x="710" y="321" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#6B4F3A">Landmark</text>
+        <text x="790" y="315" font-size="14">&#128013;</text>
+        <!-- Trees -->
+        <text x="580" y="390" font-size="16">&#127794;</text>
+        <text x="610" y="370" font-size="14">&#127795;</text>
+        <text x="830" y="180" font-size="14">&#127795;</text>
+        <text x="850" y="350" font-size="16">&#127794;</text>
+        <text x="800" y="390" font-size="14">&#127795;</text>
+        <!-- Legend -->
+        <rect x="580" y="420" width="180" height="85" rx="4" fill="#E8D5B8" stroke="#8B6B4A" stroke-width="1"/>
+        <text x="595" y="438" font-family="'Bebas Neue',sans-serif" font-size="10" fill="#3D2B1F" letter-spacing="2">LEGEND</text>
+        <text x="595" y="453" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#3D2B1F">&#128293; = Challenge Location</text>
+        <text x="595" y="466" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#3D2B1F">&#10060; = Hidden Idol</text>
+        <text x="595" y="479" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#3D2B1F">&#128694; = Walking Path</text>
+        <text x="595" y="492" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#3D2B1F">&#9888; = Road Crossing</text>
+        <text x="595" y="505" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#3D2B1F">&#127952; = Volleyball Court</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     PARK PACK
+     ================================================================ -->
+<section class="section" id="parkpack">
+  <div class="container">
+    <span class="section-label">&#127890; Transport Gear</span>
+    <h2 class="section-title">Park Packing List</h2>
+    <p class="section-subtitle">Pack before 3:00 PM for the walk to Diablo Vista Park. <span class="role-badge role-helper">Helper</span></p>
+    <div class="challenge-card physical animate-on-scroll">
+      <div class="challenge-card-header">
+        <div><div class="challenge-number">CHECKLIST</div><div class="challenge-name">Park Gear</div></div>
+      </div>
+      <div class="challenge-card-body">
+        <ul class="setup-checklist"><li><div class="check-box"></div> &#128680; 12 traffic cones</li><li><div class="check-box"></div> &#9917; 1 to 2 pop-up soccer goals</li><li><div class="check-box"></div> &#9917; 2 to 3 soccer balls</li><li><div class="check-box"></div> &#127890; 1 tarp</li><li><div class="check-box"></div> &#127987; Tribe flags (optional)</li><li><div class="check-box"></div> &#128167; Water bottles for all</li><li><div class="check-box"></div> &#127925; Bluetooth speaker</li><li><div class="check-box"></div> &#129658; First aid kit</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     CONTINGENCY
+     ================================================================ -->
+<section class="section" id="contingency">
+  <div class="container">
+    <span class="section-label">&#127783; Plan B</span>
+    <h2 class="section-title">Contingency Plan</h2>
+    <div class="overview-grid animate-on-scroll" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+      <div class="overview-card" style="border-left:3px solid var(--tribe-blue);"><div class="overview-card-icon">&#127783;</div><div class="overview-card-label">If Rain</div><p style="font-size:15px;color:var(--text-secondary);line-height:1.7;margin-top:8px;">All outdoor challenges move to garage + living room. Soccer becomes indoor ball toss.</p></div>
+      <div class="overview-card" style="border-left:3px solid var(--fire);"><div class="overview-card-icon">&#9201;</div><div class="overview-card-label">Challenge Runs Long</div><p style="font-size:15px;color:var(--text-secondary);line-height:1.7;margin-top:8px;">Jeff calls it ("We have a winner!"). No challenge over 25 min.</p></div>
+      <div class="overview-card" style="border-left:3px solid var(--gold);"><div class="overview-card-icon">&#128164;</div><div class="overview-card-label">Energy Drops</div><p style="font-size:15px;color:var(--text-secondary);line-height:1.7;margin-top:8px;">Cut "Most Likely To" or skip one Block 2 challenge.</p></div>
+      <div class="overview-card" style="border-left:3px solid var(--red);"><div class="overview-card-icon">&#129658;</div><div class="overview-card-label">Injury</div><p style="font-size:15px;color:var(--text-secondary);line-height:1.7;margin-top:8px;">First aid kit in kitchen. Search "urgent care Danville CA" morning of.</p></div>
+      <div class="overview-card" style="border-left:3px solid var(--green);"><div class="overview-card-icon">&#127952;</div><div class="overview-card-label">Alternative Activities</div><p style="font-size:15px;color:var(--text-secondary);line-height:1.7;margin-top:8px;">Diablo Vista Park volleyball court is available as an alternative challenge location or casual group activity.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     MUSIC
+     ================================================================ -->
+<section class="section" id="music">
+  <div class="container">
+    <span class="section-label">&#127925; The Soundtrack</span>
+    <h2 class="section-title">Music Cue Sheet</h2>
+    <p class="section-subtitle">Manages the speaker.</p>
+    <div class="table-wrap animate-on-scroll"><table class="styled-table"><thead><tr><th>Moment</th><th>Track</th><th>Volume</th></tr></thead><tbody>
+      <tr><td>&#128075; Arrival (12 PM)</td><td>Tropical/jungle ambience</td><td>Low, loop</td></tr>
+      <tr><td>&#127916; Opening (1:45 PM)</td><td>"Ancient Voices" (Survivor theme)</td><td>Full</td></tr>
+      <tr><td>&#9876; Challenges</td><td>Upbeat Survivor challenge music</td><td>Medium</td></tr>
+      <tr><td>&#128149; Loved Ones (6:20 PM)</td><td>Emotional Survivor piano</td><td>Medium</td></tr>
+      <tr><td>&#10024; Merge (5:45 PM)</td><td>"Ancient Voices"</td><td>Full, on "Welcome to The Ville"</td></tr>
+      <tr><td>&#128293; Final TC (7:30 PM)</td><td>Tribal Council ambience</td><td>Low</td></tr>
+      <tr><td>&#129345; Votes (7:50 PM)</td><td>Vote reading drums</td><td>Build</td></tr>
+      <tr><td>&#127874; Cake (8 PM)</td><td>Happy Birthday, then party</td><td>Celebration</td></tr>
+      <tr><td>&#127881; Reunion (8:15 PM+)</td><td>Chill playlist</td><td>Background</td></tr>
+    </tbody></table></div>
+  </div>
+</section>
+
+<!-- ================================================================
+     PHOTOS
+     ================================================================ -->
+<section class="section" id="photos">
+  <div class="container">
+    <span class="section-label">&#128248; Capture Everything</span>
+    <h2 class="section-title">Shot List</h2>
+    <p class="section-subtitle">Assign one guest as photographer. <span class="role-badge role-helper">Helper</span></p>
+    <div class="challenge-card physical animate-on-scroll">
+      <div class="challenge-card-header">
+        <div><div class="challenge-number">SHOT LIST</div><div class="challenge-name">Key Moments to Capture</div></div>
+      </div>
+      <div class="challenge-card-body">
+        <ul class="setup-checklist">
+          <li><div class="check-box"></div> &#128248; Tribe reveal reactions</li>
+          <li><div class="check-box"></div> &#128248; Each tribe's team photo</li>
+          <li><div class="check-box"></div> &#127939; Each challenge: action + reaction</li>
+          <li><div class="check-box"></div> &#128176; Auction bidding chaos</li>
+          <li><div class="check-box"></div> &#128140; Letters from Home: Jessica's reaction (THE MONEY SHOT)</li>
+          <li><div class="check-box"></div> &#10024; Merge buff moment (everyone in teal)</li>
+          <li><div class="check-box"></div> &#128557; Merge reveal: Jessica's face</li>
+          <li><div class="check-box"></div> &#128149; Loved Ones Moment</li>
+          <li><div class="check-box"></div> &#128293; Final Tribal: voting, urn, atmosphere</li>
+          <li><div class="check-box"></div> &#128064; Vote reading: Jessica's face</li>
+          <li><div class="check-box"></div> &#128081; Sole Survivor crown moment</li>
+          <li><div class="check-box"></div> &#127874; Birthday cake</li>
+          <li><div class="check-box"></div> &#128247; Group photo in merge buffs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     REUNION
+     ================================================================ -->
+<section class="section" id="reunion">
+  <div class="container">
+    <span class="section-label">&#127775; After the Game</span>
+    <h2 class="section-title">Reunion Show (8:15 PM+)</h2>
+    <p class="section-subtitle">Jeff runs a quick, casual reunion after cake. <span class="role-badge role-jeff">Charlie</span></p>
+    <div class="overview-grid animate-on-scroll">
+      <div class="overview-card"><div class="overview-card-value" style="font-size:14px;">&#127775; "Favorite moment of the day?"</div></div>
+      <div class="overview-card"><div class="overview-card-value" style="font-size:14px;">&#127942; "Who played the best game?"</div></div>
+      <div class="overview-card"><div class="overview-card-value" style="font-size:14px;">&#128172; "Any regrets?"</div></div>
+      <div class="overview-card"><div class="overview-card-value" style="font-size:14px;">&#128562; "What surprised you most?"</div></div>
+      <div class="overview-card"><div class="overview-card-value" style="font-size:14px;">&#128293; "Would you play again?"</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     MOMENTS
+     ================================================================ -->
+<section class="section" id="moments">
+  <div class="container">
+    <span class="section-label">&#11088; Do Not Miss</span>
+    <h2 class="section-title">5 Special Moments</h2>
+    <p class="section-subtitle">The emotional peaks. Plan around them. Film everything.</p>
+    <div class="moments-grid animate-on-scroll">
+      <div class="moment-card emotional-moment"><div class="moment-time">~4:05 PM</div><div class="moment-name">&#128140; 1. Letters from Home</div><div class="moment-desc">Handwritten notes from every guest.</div></div>
+      <div class="moment-card special-moment"><div class="moment-time">5:45 PM</div><div class="moment-name">&#128171; 2. Merge Reveal</div><div class="moment-desc">The Yoc, Menalua, Diabla: Jessica's life, hidden all day.</div></div>
+      <div class="moment-card emotional-moment"><div class="moment-time">6:20 PM</div><div class="moment-name">&#128149; 3. Loved Ones</div><div class="moment-desc">Staged family message with emotional music.</div></div>
+      <div class="moment-card special-moment"><div class="moment-time">7:30 PM</div><div class="moment-name">&#128221; 4. Legacy Notes</div><div class="moment-desc">Written messages for Jessica's 30s.</div></div>
+      <div class="moment-card"><div class="moment-time">8:00 PM</div><div class="moment-name">&#127874; 5. Birthday Cake</div><div class="moment-desc">Jeff's closer. 30 candles. The tribe has spoken.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     KEEPSAKES
+     ================================================================ -->
+<section class="section" id="keepsakes">
+  <div class="container">
+    <span class="section-label">&#127873; Take Home</span>
+    <h2 class="section-title">Keepsakes</h2>
+    <div class="moments-grid animate-on-scroll">
+      <div class="moment-card"><div class="moment-name">&#127916; Confessional Highlight Reel</div><div class="moment-desc">Edit into 3 to 5 min video.</div></div>
+      <div class="moment-card"><div class="moment-name">&#129525; Custom Buffs</div><div class="moment-desc">Everyone keeps tribe + merge buff.</div></div>
+      <div class="moment-card emotional-moment"><div class="moment-name">&#128140; Letters from Home</div><div class="moment-desc">Frame for Jessica.</div></div>
+      <div class="moment-card"><div class="moment-name">&#128221; Legacy Notes</div><div class="moment-desc">Bind or frame.</div></div>
+      <div class="moment-card"><div class="moment-name">&#127942; Sole Survivor Trophy</div><div class="moment-desc">Shelf display with group photo.</div></div>
+      <div class="moment-card"><div class="moment-name">&#128444; Season 30 Cast Poster</div><div class="moment-desc">Canva, print 11x14.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     AFTER DARK
+     ================================================================ -->
+<section class="section section-night" id="afterdark">
+  <div class="container">
+    <span class="section-label" style="color:var(--fire-light);">&#127769; After the Sun Sets</span>
+    <h2 class="section-title">After Dark</h2>
+    <p class="section-subtitle">The game doesn't end when the cake is cut. Welcome to the night phase.</p>
+
+    <!-- THE HIDDEN IMMUNITY ICE -->
+    <div class="night-callout animate-on-scroll">
+      <h3>&#127866; The Hidden Immunity Ice</h3>
+      <p style="font-size:17px;color:var(--text-primary);margin-bottom:16px;font-weight:600;">Runs all evening. This is the game within the game.</p>
+      <ul style="list-style:none;padding:0;font-size:16px;color:var(--text-secondary);line-height:1.8;">
+        <li style="padding:6px 0;"><strong style="color:var(--fire);">Supply:</strong> 24 Smirnoff Ices (two 12-packs)</li>
+        <li style="padding:6px 0;"><strong style="color:var(--fire);">Wave 1 (8:30 PM):</strong> Plant 6 bottles in coolers, under chairs, bathroom</li>
+        <li style="padding:6px 0;"><strong style="color:var(--fire);">Wave 2 (9:30 PM):</strong> Plant 6 more in sneakier spots: inside Tree Mail scrolls, taped under chairs, inside voting urn</li>
+        <li style="padding:6px 0;"><strong style="color:var(--fire);">Wave 3 (10:00 PM+):</strong> Remaining 12 in increasingly obvious places</li>
+        <li style="padding:6px 0;"><strong style="color:var(--gold);">Rule:</strong> If you see it, touch it, or are handed it, drop to one knee and chug. "The tribe has spoken." Cannot refuse.</li>
+        <li style="padding:6px 0;"><strong style="color:var(--gold);">Emergency Out:</strong> "Play your idol" and assign it to someone else.</li>
+      </ul>
+    </div>
+
+    <!-- EVENING TIMELINE -->
+    <h3 style="font-family:var(--font-head);font-size:24px;letter-spacing:3px;color:var(--fire);margin-bottom:20px;">&#128337; Evening Timeline</h3>
+    <div style="margin-bottom:32px;" class="animate-on-scroll">
+      <div class="night-timeline-item"><div class="night-timeline-time">8:30 PM</div><div class="night-timeline-event"><strong>Reunion wraps.</strong> Transition to evening mode. Lights dim. Start planting Ices.</div></div>
+      <div class="night-timeline-item"><div class="night-timeline-time">8:45 PM</div><div class="night-timeline-event"><strong>Tribal Spirits Council</strong> ("Most Likely To" drinking game, 12 Survivor-themed prompts, ~20 min)</div></div>
+      <div class="night-timeline-item"><div class="night-timeline-time">9:10 PM</div><div class="night-timeline-event"><strong>Ice Luge Reveal</strong> (if purchased). First pour is Jessica's.</div></div>
+      <div class="night-timeline-item"><div class="night-timeline-time">9:20 PM</div><div class="night-timeline-event"><strong>Buff Chug Relay</strong> (re-form original tribes, relay race, ~10 min)</div></div>
+      <div class="night-timeline-item"><div class="night-timeline-time">9:35 PM</div><div class="night-timeline-event"><strong>Survivor Auction: Happy Hour Edition</strong> (~20 min)</div></div>
+      <div class="night-timeline-item"><div class="night-timeline-time">10:00 PM</div><div class="night-timeline-event"><strong>Fire Making Challenge</strong> (flip cup tournament, single elimination bracket, ~25 min)</div></div>
+      <div class="night-timeline-item" style="border-bottom:none;"><div class="night-timeline-time">10:30 PM+</div><div class="night-timeline-event"><strong>Free play.</strong> Immunity Idol Hunt: After Dark, confessional booth, music up.</div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- CENTERPIECE OPTIONS -->
+    <h3 style="font-family:var(--font-head);font-size:24px;letter-spacing:3px;color:var(--gold);margin-bottom:20px;">&#127942; Centerpiece Options</h3>
+    <div class="centerpiece-grid animate-on-scroll">
+      <div class="centerpiece-card">
+        <h4>&#129482; Ice Luge</h4>
+        <p><strong>Chisel-It Ice</strong><br>Concord, CA<br>Order 2+ weeks ahead.</p>
+      </div>
+      <div class="centerpiece-card">
+        <h4>&#127866; Pony Keg</h4>
+        <p><strong>Canyon Club Brewery</strong><br>Danville, CA<br>Custom "TRIBAL BREW" label.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- GAME RULES -->
+    <h3 style="font-family:var(--font-head);font-size:24px;letter-spacing:3px;color:var(--fire);margin-bottom:20px;">&#127919; Game Rules</h3>
+
+    <div class="night-game-card animate-on-scroll">
+      <h4>&#127866; Tribal Spirits Council</h4>
+      <p style="margin-bottom:8px;">12 Survivor-themed "Most Likely To" prompts. Everyone points at their answer on the count of 3. Majority rules. Person voted gets a drink.</p>
+      <ul>
+        <li>Most likely to win a real season of Survivor</li>
+        <li>Most likely to betray their alliance on Day 1</li>
+        <li>Most likely to cry at Tribal Council</li>
+        <li>Most likely to find a Hidden Immunity Idol</li>
+        <li>Most likely to eat a bug for the win</li>
+        <li>Most likely to get blindsided</li>
+        <li>Most likely to give an iconic confessional</li>
+        <li>Most likely to flirt their way to the final 3</li>
+        <li>Most likely to quit the game</li>
+        <li>Most likely to be brought back for a returning players season</li>
+        <li>Most likely to make the jury bitter</li>
+        <li>Most likely to become the next Jeff Probst</li>
+      </ul>
+    </div>
+
+    <div class="night-game-card animate-on-scroll">
+      <h4>&#129525; Buff Chug Relay</h4>
+      <p style="margin-bottom:8px;">Re-form original tribes (The Yoc, Menalua, Diabla). Each tribe lines up relay style. Each member must chug a drink, then wrap their buff around the next person's head before they can go. <strong>Penalty: if the buff falls off at any point, the person must restart their chug.</strong> First tribe to finish wins.</p>
+    </div>
+
+    <div class="night-game-card animate-on-scroll">
+      <h4>&#128293; Fire Making Challenge (Flip Cup Tournament)</h4>
+      <p style="margin-bottom:8px;">Single elimination bracket. Draw the bracket on a whiteboard. Play tribal council ambience music. Each match is a best of 3 flip cup round. Loser gets their torch "snuffed" (phone flashlight turned off dramatically). Champion wins the title of Fire Making King/Queen.</p>
+    </div>
+
+    <div class="night-game-card animate-on-scroll">
+      <h4>&#128176; Survivor Auction: Happy Hour Edition</h4>
+      <p style="margin-bottom:8px;">Use leftover Survivor Bucks. 6 quick items:</p>
+      <ul>
+        <li>Mystery shot (could be good, could be terrible)</li>
+        <li>Premium mixed drink for buyer + friend</li>
+        <li>Steal someone else's drink (advantage item)</li>
+        <li>Immunity from the next Ice (lasts 30 min)</li>
+        <li>Choose someone who must take a shot</li>
+        <li>Everyone drinks (group item, revealed)</li>
+      </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- BONUS GAMES -->
+    <h3 style="font-family:var(--font-head);font-size:24px;letter-spacing:3px;color:var(--gold);margin-bottom:20px;">&#127775; Bonus Games</h3>
+
+    <div class="night-game-card animate-on-scroll">
+      <h4>&#128220; "The Jury Speaks"</h4>
+      <p>Anonymous roast cards of Jessica. Hand out index cards earlier in the evening. Everyone writes one roast or funny memory. Charlie reads them aloud in Jeff Probst voice at the podium. Jessica guesses who wrote each one. <strong>Correct guess = writer drinks. Wrong guess = Jessica drinks.</strong></p>
+    </div>
+
+    <div class="night-game-card animate-on-scroll">
+      <h4>&#127965; "Exile Island"</h4>
+      <p>Consensus vote exiles someone to an uncomfortable chair (lawn chair, stool, etc.) for 5 minutes. The exiled player gets a consolation drink and a clue to the location of a hidden Smirnoff Ice. They must serve their time before returning to the group.</p>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- end .main-content -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-tagline">Outteach. Outplay. Outthirty.</div>
+  <div class="footer-birthday">Happy 30th Birthday, Jessica</div>
+  <div class="footer-fine">
+    Survivor: Jessica's Dirty 30 | Confidential Production Document<br>
+    May 2, 2026 | Danville, CA<br>
+    Co-Executive Producers: Charlie Moran &amp; Stephanie Siemens
+  </div>
+</footer>
+
+<!-- ================================================================
+     JAVASCRIPT
+     ================================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  // Top nav hamburger
+  var hamburger = document.getElementById('hamburgerBtn');
+  var navLinks = document.getElementById('topNavLinks');
+  if (hamburger) {
+    hamburger.addEventListener('click', function() {
+      navLinks.classList.toggle('open');
+      hamburger.textContent = navLinks.classList.contains('open') ? '\u2715' : '\u2630';
+    });
+    navLinks.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        navLinks.classList.remove('open');
+        hamburger.textContent = '\u2630';
+      });
+    });
+  }
+
+  // Active nav highlighting
+  var sections = document.querySelectorAll('section[id]');
+  var topLinks = document.querySelectorAll('.top-nav-links a');
+  function highlightNav() {
+    var scrollY = window.scrollY + 100;
+    sections.forEach(function(section) {
+      var top = section.offsetTop;
+      var height = section.offsetHeight;
+      var id = section.getAttribute('id');
+      topLinks.forEach(function(link) {
+        if (link.getAttribute('href') === '#' + id) {
+          if (scrollY >= top && scrollY < top + height) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        }
+      });
+    });
+  }
+  window.addEventListener('scroll', highlightNav);
+  highlightNav();
+
+  // Progress sidebar dots
+  var sidebarDots = document.querySelectorAll('.progress-sidebar-dot');
+  sidebarDots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      var target = dot.getAttribute('data-section');
+      if (target) {
+        var el = document.getElementById(target);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Progress sidebar scroll tracking
+  var scrollIndicator = document.getElementById('scrollIndicator');
+  function updateSidebarActive() {
+    var scrollY = window.scrollY + 200;
+    var activeIdx = -1;
+    sidebarDots.forEach(function(dot, i) {
+      var target = dot.getAttribute('data-section');
+      var el = target ? document.getElementById(target) : null;
+      dot.classList.remove('active');
+      if (el && scrollY >= el.offsetTop) {
+        activeIdx = i;
+      }
+    });
+    if (activeIdx >= 0) {
+      sidebarDots[activeIdx].classList.add('active');
+      if (scrollIndicator) {
+        var dotRect = sidebarDots[activeIdx].getBoundingClientRect();
+        var sidebarRect = document.getElementById('progressSidebar').getBoundingClientRect();
+        scrollIndicator.style.top = (dotRect.top - sidebarRect.top + dotRect.height / 2 - 9) + 'px';
+        scrollIndicator.style.left = '8px';
+        scrollIndicator.style.transform = 'none';
+      }
+    }
+  }
+  window.addEventListener('scroll', updateSidebarActive);
+  updateSidebarActive();
+
+  // Scroll animations
+  var animElements = document.querySelectorAll('.animate-on-scroll');
+  function checkAnimations() {
+    var wh = window.innerHeight;
+    animElements.forEach(function(el) {
+      if (el.getBoundingClientRect().top < wh - 60) el.classList.add('visible');
+    });
+  }
+  window.addEventListener('scroll', checkAnimations);
+  window.addEventListener('resize', checkAnimations);
+  setTimeout(checkAnimations, 100);
+
+  // Checklist persistence
+  var checkboxes = document.querySelectorAll('.check-box');
+  checkboxes.forEach(function(box, i) {
+    var key = 'check-' + i;
+    if (localStorage.getItem(key) === 'true') box.classList.add('checked');
+    box.addEventListener('click', function(e) {
+      e.stopPropagation();
+      box.classList.toggle('checked');
+      localStorage.setItem(key, box.classList.contains('checked'));
+    });
+  });
+
+  // Countdown
+  var eventDate = new Date('2026-05-02T12:00:00-07:00');
+  var countdownEl = document.getElementById('countdown');
+  function updateCountdown() {
+    var now = new Date();
+    var diff = Math.ceil((eventDate - now) / (1000 * 60 * 60 * 24));
+    if (diff > 0) {
+      countdownEl.textContent = diff + ' DAYS UNTIL GAME DAY';
+    } else if (diff === 0) {
+      countdownEl.textContent = 'GAME DAY';
+    } else {
+      countdownEl.textContent = 'THE TRIBE HAS SPOKEN';
+    }
+  }
+  updateCountdown();
+
+  // Timeline collapsible
+  document.querySelectorAll('.timeline-item').forEach(function(item) {
+    var detail = item.querySelector('.timeline-detail');
+    var expand = item.querySelector('.timeline-expand');
+    if (detail && expand) {
+      item.addEventListener('click', function(e) {
+        if (e.target.closest('.check-box')) return;
+        detail.classList.toggle('collapsed');
+        expand.classList.toggle('open');
+      });
+    }
+  });
+
+  // Tribe buff overlay
+  window.showTribeOverlay = function(tribe) {
+    var overlay = document.getElementById('tribeOverlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'tribeOverlay';
+      overlay.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:2000;overflow-y:auto;padding:60px 20px 40px;';
+      document.body.appendChild(overlay);
+    }
+    var tribeMap = {
+      'yoc': { color: 'tribe-pink', label: 'The Yoc (Pink)' },
+      'menalua': { color: 'tribe-blue', label: 'Menalua (Blue)' },
+      'diabla': { color: 'tribe-yellow', label: 'Diabla (Yellow)' }
+    };
+    var info = tribeMap[tribe];
+    if (!info) return;
+    var slots = document.querySelectorAll('.cast-slot.' + info.color);
+    var html = '<div style="max-width:900px;margin:0 auto;text-align:center;">';
+    html += '<button onclick="document.getElementById(\'tribeOverlay\').style.display=\'none\'" style="position:fixed;top:20px;right:20px;background:none;border:2px solid rgba(255,255,255,0.3);color:#fff;font-size:24px;cursor:pointer;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2001;">&times;</button>';
+    html += '<h2 style="font-family:var(--font-head);font-size:36px;letter-spacing:3px;color:var(--text-primary);margin-bottom:24px;">' + info.label + '</h2>';
+    html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;">';
+    slots.forEach(function(slot) {
+      html += '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px 16px;text-align:center;">' + slot.innerHTML + '</div>';
+    });
+    html += '</div></div>';
+    overlay.innerHTML = html;
+    overlay.style.display = 'block';
+  };
+
+  // Close overlay on escape or background click
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      var overlay = document.getElementById('tribeOverlay');
+      if (overlay) overlay.style.display = 'none';
+    }
+  });
+
+  // Close overlay when clicking outside content
+  document.addEventListener('click', function(e) {
+    var overlay = document.getElementById('tribeOverlay');
+    if (overlay && overlay.style.display === 'block' && e.target === overlay) {
+      overlay.style.display = 'none';
+    }
+  });
+
+  // Tribe cards click to open overlay
+  document.querySelectorAll('.tribe-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      if (card.classList.contains('pink')) showTribeOverlay('yoc');
+      else if (card.classList.contains('blue')) showTribeOverlay('menalua');
+      else if (card.classList.contains('yellow')) showTribeOverlay('diabla');
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
